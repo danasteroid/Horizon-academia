@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horizon Academia — Academia Pre-Instituto | Preparación para el Examen Oficial</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter, Montserrat, Plus Jakarta Sans, Outfit, Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+    /* Tipografía y Base */
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-d1 { font-family: 'Montserrat', sans-serif; }
+    .font-d2 { font-family: 'Inter', sans-serif; }
+    .font-d3 { font-family: 'Outfit', sans-serif; }
+
+    /* Barra de progreso de lectura / scroll superior */
+    #scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3.5px;
+      width: 0%;
+      background: linear-gradient(90deg, #2563eb 0%, #06b6d4 35%, #8b5cf6 70%, #f43f5e 100%);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 4px rgba(236, 72, 153, 0.6);
+      z-index: 100;
+      transition: width 0.1s ease-out;
+      pointer-events: none;
+    }
+
+    /* Animaciones de entrada al hacer scroll */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      filter: blur(3px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
+    }
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0) translateX(0) scale(1);
+      filter: blur(0);
+    }
+    .reveal-left { transform: translateX(-35px); }
+    .reveal-right { transform: translateX(35px); }
+    .reveal-scale { transform: scale(0.94); }
+    
+    .delay-100 { transition-delay: 100ms; }
+    .delay-150 { transition-delay: 150ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-250 { transition-delay: 250ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+
+    /* Micro-elevaciones y sombras */
+    .card-hover-effect {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+    .card-hover-effect:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Patrón de cuadrícula / malla decorativa */
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* Orbes flotantes animados en el fondo del slider */
+    @keyframes floatOrb1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -25px) scale(1.1); }
+    }
+    @keyframes floatOrb2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-30px, 25px) scale(0.92); }
+    }
+    .animate-float-orb-1 { animation: floatOrb1 9s ease-in-out infinite; }
+    .animate-float-orb-2 { animation: floatOrb2 11s ease-in-out infinite; }
+
+    /* ========================================================= */
+    /* ESTILOS DINÁMICOS PARA EL SLIDER DE NOTICIAS (PARTE 1)    */
+    /* ========================================================= */
+    .news-slide {
+      display: none;
+      opacity: 0;
+      transform: translateY(16px) scale(0.985);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      width: 100%;
+    }
+    .news-slide.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    /* Animaciones escalonadas de entrada de elementos dentro del slide activo */
+    .news-slide.active .slide-anim-badge {
+      animation: slideInChild 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+    }
+    .news-slide.active .slide-anim-title {
+      animation: slideInChild 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+    }
+    .news-slide.active .slide-anim-text {
+      animation: slideInChild 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both;
+    }
+    .news-slide.active .slide-anim-cta {
+      animation: slideInChild 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+    }
+    .news-slide.active .slide-anim-card {
+      animation: slideCardIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    }
+
+    @keyframes slideInChild {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Pestañas de navegación con barra de progreso dinámico */
+    .slider-nav-tab {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .slider-nav-tab .tab-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #f59e0b, #38bdf8);
+      border-radius: 9999px;
+      transition: width 0.08s linear;
+    }
+    .slider-nav-tab.active {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .slider-nav-tab.active .tab-progress {
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
+    }
+
+    /* Efecto de borde brillante que respira en la tarjeta del slide */
+    @keyframes glowPulse {
+      0%, 100% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 25px rgba(99, 102, 241, 0.15); }
+      50% { border-color: rgba(245, 158, 11, 0.6); box-shadow: 0 0 35px rgba(245, 158, 11, 0.25); }
+    }
+    .glow-card-active {
+      animation: glowPulse 4s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-[#080c16] text-white antialiased">
+
+  <!-- Barra de progreso interactiva al bajar en la página -->
+  <div id="scroll-progress-bar"></div>
+
+<main class="font-sans bg-[#080c16] text-white">
+    
+    <!-- Barra Superior de Urgencia & Admisión -->
+    <div class="bg-black text-slate-200 text-xs py-2 px-4 border-b border-blue-900/50">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-blue-600 text-white shadow-sm">
+            CICLO 2026
+          </span>
+          <span class="font-semibold text-xs text-white">Matrículas Abiertas: Turno Mañana, Tarde y Noche</span>
+        </div>
+        <div class="flex items-center gap-3 text-[11px] font-mono">
+          <span class="text-blue-400 font-bold">⚡ INICIO DE CLASES:</span>
+          <span class="bg-slate-900 border border-blue-500/40 px-2 py-0.5 rounded text-white font-bold">LUNES 23</span>
+          <span class="text-slate-400 hidden md:inline">| Vacantes limitadas por aula</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header / Navbar Principal -->
+    <header class="sticky top-0 z-40 bg-[#080c16]/95 backdrop-blur-md border-b border-slate-800 shadow-xl">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+        <!-- Logo Oficial Horizon Academia con acabado nítido y transparencia -->
+        <a href="#" class="flex items-center gap-3 group transition-transform duration-200 hover:scale-[1.02]">
+          <img src="assets/logo-brand.png" alt="Horizon Academia Logo" class="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_2px_14px_rgba(37,99,235,0.4)] transition-all group-hover:drop-shadow-[0_4px_20px_rgba(56,189,248,0.6)]" />
+        </a>
+
+        <!-- Menú de Navegación -->
+        <div class="hidden lg:flex items-center gap-7 text-xs font-bold uppercase tracking-wider text-slate-300">
+          <a href="#d2-noticias" class="text-blue-400 hover:text-white transition-colors">Noticias & Convocatorias</a>
+          <a href="#d2-solicita-info" class="hover:text-blue-400 transition-colors">Solicitar Información</a>
+          <a href="#d2-ciclos" class="hover:text-blue-400 transition-colors">Nuestros Ciclos</a>
+          <a href="#d2-razones" class="hover:text-blue-400 transition-colors">¿Por qué Horizon?</a>
+          <a href="#d2-ingresantes" class="hover:text-blue-400 transition-colors">Ingresantes</a>
+          <a href="#d2-faq" class="hover:text-blue-400 transition-colors">Preguntas Frecuentes</a>
+        </div>
+
+        <!-- Acciones -->
+        <div class="flex items-center gap-3">
+          <button onclick="openAulaModal()" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 hover:border-blue-500 px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
+            <i data-lucide="lock" class="w-3.5 h-3.5 text-blue-400"></i>
+            <span>Aula Alumnos</span>
+          </button>
+          <a href="#d2-solicita-info" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-lg shadow-blue-600/30">
+            Inscripción Rápida
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========================================================================= -->
+    <!-- PARTE 1: BANNER / SLIDER DE NOTICIAS Y ACTUALIZACIONES (Ref. Imagen 1) -->
+    <!-- COLOR: Azul Índigo Imperial / Púrpura Universitario (#20146e a #0c1033) -->
+    <!-- ========================================================================= -->
+        <!-- ========================================================================= -->
+    <!-- PARTE 1: BANNER / SLIDER DE NOTICIAS Y ACTUALIZACIONES (DINÁMICO & INTERACTIVO) -->
+    <!-- COLOR: Azul Índigo Imperial / Púrpura Universitario (#1c1363 a #0a0d2c) -->
+    <!-- ========================================================================= -->
+    <section id="d2-noticias" class="relative bg-gradient-to-r from-[#1c1363] via-[#171e5c] to-[#0a0d2c] text-white border-b border-indigo-950/60 overflow-hidden select-none">
+      
+      <!-- Fondo interactivo: Malla de puntos y orbes con animación flotante -->
+      <div class="absolute inset-0 bg-grid-pattern opacity-25 pointer-events-none"></div>
+      <div class="absolute -top-24 -left-20 w-96 h-96 bg-blue-500/25 rounded-full blur-[130px] pointer-events-none animate-float-orb-1"></div>
+      <div class="absolute -bottom-24 -right-20 w-96 h-96 bg-purple-500/25 rounded-full blur-[150px] pointer-events-none animate-float-orb-2"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-amber-500/10 rounded-full blur-[160px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-14 relative z-10">
+        
+        <!-- Barra de Control Superior del Slider (Estado en vivo, Contador y Pausa/Play) -->
+        <div class="flex items-center justify-between gap-4 pb-6 mb-4 border-b border-white/10 text-xs">
+          <div class="flex items-center gap-3">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+            </span>
+            <span class="font-bold tracking-wider uppercase text-amber-300 text-[11px]">
+              Actualizaciones en Vivo • Tablón Oficial de la Academia
+            </span>
+          </div>
+
+          <div class="flex items-center gap-3 sm:gap-4 font-mono text-[11px]">
+            <!-- Contador Dinámico -->
+            <div class="bg-black/40 border border-white/10 px-3 py-1 rounded-full text-slate-300 flex items-center gap-1.5 shadow-sm">
+              <span class="text-slate-400">Slide</span>
+              <span id="slide-current-num" class="font-black text-amber-400">01</span>
+              <span class="text-slate-500">/</span>
+              <span id="slide-total-num" class="text-slate-300">03</span>
+            </div>
+
+            <!-- Indicador de Auto-play / Pausa -->
+            <button id="slider-pause-btn" onclick="toggleSliderAutoPlay()" class="hidden sm:inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1 rounded-full text-slate-300 hover:text-white transition-all cursor-pointer">
+              <span id="slider-status-icon" class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span id="slider-status-text">Auto 6s ⚡</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Contenedor Principal de Slides -->
+        <div id="slider-viewport" class="relative min-h-[460px] sm:min-h-[420px] flex items-center">
+          
+          <!-- SLIDE 1: Convocatoria Admisión 2026 -->
+          <div class="news-slide active w-full flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12" data-slide="0">
+            <!-- Columna Izquierda del Slide -->
+            <div class="lg:w-1/2 space-y-5 text-left">
+              <div class="slide-anim-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-amber-300 border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-sm">
+                <i data-lucide="megaphone" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span>Convocatoria Oficial • Admisión 2026</span>
+              </div>
+
+              <h2 class="slide-anim-title text-3xl sm:text-5xl lg:text-5xl font-black leading-tight tracking-tight text-white">
+                Tu camino para ingresar al instituto <span class="text-amber-400">comienza en Horizon.</span>
+              </h2>
+
+              <!-- TEXTO SOLICITADO -->
+              <p class="slide-anim-text text-sm sm:text-base text-slate-200 leading-relaxed max-w-xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+
+              <div class="slide-anim-cta pt-2 flex flex-wrap items-center gap-4">
+                <a href="#d2-solicita-info" class="inline-flex items-center gap-2 bg-white hover:bg-amber-400 hover:text-slate-950 text-[#1e1b4b] font-black text-xs uppercase tracking-wider px-7 py-3.5 rounded-xl shadow-xl transition-all transform hover:scale-105 group">
+                  <span>¡Matrículas Abiertas!</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <span class="text-xs text-slate-300 font-mono flex items-center gap-1.5">
+                  <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-400"></i> Vacantes limitadas por aula
+                </span>
+              </div>
+            </div>
+
+            <!-- Columna Derecha del Slide: Tarjeta Dinámica Estilo Imagen 1 -->
+            <div class="slide-anim-card lg:w-1/2 w-full">
+              <div class="relative bg-gradient-to-br from-[#0c0d24]/95 via-[#131938]/95 to-[#16204d]/95 border border-indigo-400/40 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md overflow-hidden glow-card-active group">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-amber-400/15 rounded-full blur-2xl group-hover:bg-amber-400/25 transition-all"></div>
+                <div class="absolute -top-10 -left-10 w-36 h-36 bg-blue-500/15 rounded-full blur-2xl"></div>
+
+                <div class="flex items-center justify-between border-b border-indigo-400/20 pb-4 mb-5 relative z-10">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                    <span class="text-xs font-black uppercase tracking-widest text-blue-300">Convocatoria Oficial</span>
+                  </div>
+                  <span class="bg-amber-400 text-slate-950 font-black text-[10px] px-3 py-1 rounded-full uppercase shadow-sm">Vacantes 2026</span>
+                </div>
+
+                <div class="space-y-3 mb-6 relative z-10">
+                  <div class="text-xs uppercase tracking-wider text-slate-300 font-bold flex items-center gap-2">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span>Horizon Academia Pre-Instituto</span>
+                  </div>
+                  <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight">
+                    PREPARACIÓN INTEGRAL PARA EL <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-sky-200 to-amber-300">EXAMEN OFICIAL</span>
+                  </h3>
+                  <!-- TEXTO SOLICITADO -->
+                  <p class="text-xs text-slate-300 leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+                  </p>
+                </div>
+
+                <!-- Bloque de Fechas y Datos Clave como en Imagen 1 -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-black/50 border border-indigo-500/30 p-4 rounded-2xl text-[11px] font-mono relative z-10">
+                  <div class="border-r border-indigo-900/60 pr-2">
+                    <span class="text-slate-400 block text-[9px] uppercase">Evaluación</span>
+                    <span class="text-white font-black">DE ADMISIÓN</span>
+                  </div>
+                  <div class="border-r border-indigo-900/60 pr-2">
+                    <span class="text-slate-400 block text-[9px] uppercase">Fecha</span>
+                    <span class="text-amber-400 font-black">DOMINGO 28</span>
+                  </div>
+                  <div class="border-r border-indigo-900/60 pr-2">
+                    <span class="text-slate-400 block text-[9px] uppercase">Horario</span>
+                    <span class="text-white font-black">8:00 A. M.</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-400 block text-[9px] uppercase">Modalidad</span>
+                    <span class="text-cyan-300 font-black">PRES / VIRT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 2: Gran Simulacro Presencial y Virtual -->
+          <div class="news-slide w-full flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12" data-slide="1">
+            <div class="lg:w-1/2 space-y-5 text-left">
+              <div class="slide-anim-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-cyan-300 border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-sm">
+                <i data-lucide="target" class="w-3.5 h-3.5 text-cyan-400"></i>
+                <span>Evento Académico Destacado</span>
+              </div>
+
+              <h2 class="slide-anim-title text-3xl sm:text-5xl lg:text-5xl font-black leading-tight tracking-tight text-white">
+                Simulacro Tipo Instituto <span class="text-cyan-300">con Ranking en Vivo.</span>
+              </h2>
+
+              <!-- TEXTO SOLICITADO -->
+              <p class="slide-anim-text text-sm sm:text-base text-slate-200 leading-relaxed max-w-xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+
+              <div class="slide-anim-cta pt-2 flex flex-wrap items-center gap-4">
+                <a href="#d2-solicita-info" class="inline-flex items-center gap-2 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-xs uppercase tracking-wider px-7 py-3.5 rounded-xl shadow-xl transition-all transform hover:scale-105 group">
+                  <span>Inscribirme al Simulacro</span>
+                  <i data-lucide="check-circle" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                </a>
+                <span class="text-xs text-slate-300 font-mono flex items-center gap-1.5">
+                  <i data-lucide="award" class="w-3.5 h-3.5 text-cyan-400"></i> Medición con balotas reales
+                </span>
+              </div>
+            </div>
+
+            <div class="slide-anim-card lg:w-1/2 w-full">
+              <div class="relative bg-gradient-to-br from-[#0c0d24]/95 via-[#0e1e3b]/95 to-[#102d4f]/95 border border-cyan-400/40 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md overflow-hidden group">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-cyan-400/15 rounded-full blur-2xl group-hover:bg-cyan-400/25 transition-all"></div>
+                <div class="absolute -top-10 -left-10 w-36 h-36 bg-blue-500/15 rounded-full blur-2xl"></div>
+
+                <div class="flex items-center justify-between border-b border-cyan-400/20 pb-4 mb-5 relative z-10">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                    <span class="text-xs font-black uppercase tracking-widest text-cyan-300">Prueba de Nivelación</span>
+                  </div>
+                  <span class="bg-cyan-400 text-slate-950 font-black text-[10px] px-3 py-1 rounded-full uppercase shadow-sm">100% Gratuito</span>
+                </div>
+
+                <div class="space-y-3 mb-6 relative z-10">
+                  <div class="text-xs uppercase tracking-wider text-slate-300 font-bold flex items-center gap-2">
+                    <i data-lucide="trending-up" class="w-3.5 h-3.5 text-cyan-400"></i>
+                    <span>Mide tus conocimientos antes del examen real</span>
+                  </div>
+                  <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight">
+                    SIMULACRO NACIONAL DE <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-white">ADMISIÓN PRE-INSTITUTO</span>
+                  </h3>
+                  <!-- TEXTO SOLICITADO -->
+                  <p class="text-xs text-slate-300 leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-black/50 border border-cyan-500/30 p-4 rounded-2xl text-[11px] font-mono relative z-10">
+                  <div class="border-r border-indigo-900/60 pr-2">
+                    <span class="text-slate-400 block text-[9px] uppercase">Formato</span>
+                    <span class="text-white font-black">100 PREG</span>
+                  </div>
+                  <div class="border-r border-indigo-900/60 pr-2">
+                    <span class="text-slate-400 block text-[9px] uppercase">Tiempo</span>
+                    <span class="text-cyan-300 font-black">3 HORAS</span>
+                  </div>
+                  <div class="border-r border-indigo-900/60 pr-2">
+                    <span class="text-slate-400 block text-[9px] uppercase">Solucionario</span>
+                    <span class="text-white font-black">EN VIDEO</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-400 block text-[9px] uppercase">Resultados</span>
+                    <span class="text-amber-400 font-black">MISMO DÍA</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 3: Banco de Preguntas Resueltas & Balotarios -->
+          <div class="news-slide w-full flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12" data-slide="2">
+            <div class="lg:w-1/2 space-y-5 text-left">
+              <div class="slide-anim-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-emerald-300 border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-sm">
+                <i data-lucide="book-open" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Recursos Académicos Oficiales</span>
+              </div>
+
+              <h2 class="slide-anim-title text-3xl sm:text-5xl lg:text-5xl font-black leading-tight tracking-tight text-white">
+                Balotarios Oficiales y <span class="text-emerald-400">Preguntas Fijas.</span>
+              </h2>
+
+              <!-- TEXTO SOLICITADO -->
+              <p class="slide-anim-text text-sm sm:text-base text-slate-200 leading-relaxed max-w-xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+
+              <div class="slide-anim-cta pt-2 flex flex-wrap items-center gap-4">
+                <a href="#d2-solicita-info" class="inline-flex items-center gap-2 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs uppercase tracking-wider px-7 py-3.5 rounded-xl shadow-xl transition-all transform hover:scale-105 group">
+                  <span>Descargar Muestra Gratuita</span>
+                  <i data-lucide="download" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
+                </a>
+                <span class="text-xs text-slate-300 font-mono flex items-center gap-1.5">
+                  <i data-lucide="file-check" class="w-3.5 h-3.5 text-emerald-400"></i> Claves paso a paso
+                </span>
+              </div>
+            </div>
+
+            <div class="slide-anim-card lg:w-1/2 w-full">
+              <div class="relative bg-gradient-to-br from-[#0c0d24]/95 via-[#0c232c]/95 to-[#0b382d]/95 border border-emerald-400/40 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md overflow-hidden group">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-emerald-400/15 rounded-full blur-2xl group-hover:bg-emerald-400/25 transition-all"></div>
+                <div class="absolute -top-10 -left-10 w-36 h-36 bg-cyan-500/15 rounded-full blur-2xl"></div>
+
+                <div class="flex items-center justify-between border-b border-emerald-400/20 pb-4 mb-5 relative z-10">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="text-xs font-black uppercase tracking-widest text-emerald-300">Material de Estudio</span>
+                  </div>
+                  <span class="bg-emerald-400 text-slate-950 font-black text-[10px] px-3 py-1 rounded-full uppercase shadow-sm">Actualizado 2026</span>
+                </div>
+
+                <div class="space-y-3 mb-6 relative z-10">
+                  <div class="text-xs uppercase tracking-wider text-slate-300 font-bold flex items-center gap-2">
+                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i>
+                    <span>Metodología Comprobada para el Examen</span>
+                  </div>
+                  <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight">
+                    BANCO DE PREGUNTAS <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-white">TIPO INSTITUTO</span>
+                  </h3>
+                  <!-- TEXTO SOLICITADO -->
+                  <p class="text-xs text-slate-300 leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-black/50 border border-emerald-500/30 p-4 rounded-2xl text-[11px] font-mono relative z-10">
+                  <div class="border-r border-indigo-900/60 pr-2">
+                    <span class="text-slate-400 block text-[9px] uppercase">Reactivos</span>
+                    <span class="text-white font-black">+2,500</span>
+                  </div>
+                  <div class="border-r border-indigo-900/60 pr-2">
+                    <span class="text-slate-400 block text-[9px] uppercase">Soluciones</span>
+                    <span class="text-emerald-300 font-black">PASO A PASO</span>
+                  </div>
+                  <div class="border-r border-indigo-900/60 pr-2">
+                    <span class="text-slate-400 block text-[9px] uppercase">Acceso</span>
+                    <span class="text-white font-black">AULA 24/7</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-400 block text-[9px] uppercase">Descarga</span>
+                    <span class="text-cyan-300 font-black">PDF / GUÍAS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ===================================================================== -->
+        <!-- TIMELINE DE PESTAÑAS INTERACTIVAS CON BARRA DE PROGRESO DINÁMICO      -->
+        <!-- ===================================================================== -->
+        <div class="pt-8 border-t border-white/10 mt-6">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            
+            <!-- Pestaña Slide 0 -->
+            <div onclick="goToSlide(0)" id="slider-tab-0" class="slider-nav-tab active bg-white/5 hover:bg-white/10 border border-white/15 p-3.5 rounded-2xl">
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs">01</span>
+                  <span class="text-xs font-black uppercase tracking-wider text-white">Convocatoria 2026</span>
+                </div>
+                <span class="text-[10px] font-mono text-amber-300 bg-amber-400/10 px-2 py-0.5 rounded">Admisión</span>
+              </div>
+              <p class="text-[11px] text-slate-300 line-clamp-1">Evaluación oficial • Vacantes por aula</p>
+              <div class="tab-progress" id="tab-progress-0"></div>
+            </div>
+
+            <!-- Pestaña Slide 1 -->
+            <div onclick="goToSlide(1)" id="slider-tab-1" class="slider-nav-tab bg-white/5 hover:bg-white/10 border border-white/15 p-3.5 rounded-2xl">
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-xs">02</span>
+                  <span class="text-xs font-black uppercase tracking-wider text-white">Simulacro Nacional</span>
+                </div>
+                <span class="text-[10px] font-mono text-cyan-300 bg-cyan-400/10 px-2 py-0.5 rounded">Gratuito</span>
+              </div>
+              <p class="text-[11px] text-slate-300 line-clamp-1">100 Preguntas • Ranking en vivo</p>
+              <div class="tab-progress" id="tab-progress-1"></div>
+            </div>
+
+            <!-- Pestaña Slide 2 -->
+            <div onclick="goToSlide(2)" id="slider-tab-2" class="slider-nav-tab bg-white/5 hover:bg-white/10 border border-white/15 p-3.5 rounded-2xl">
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold text-xs">03</span>
+                  <span class="text-xs font-black uppercase tracking-wider text-white">Balotarios & Reactivos</span>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-300 bg-emerald-400/10 px-2 py-0.5 rounded">+2,500 Claves</span>
+              </div>
+              <p class="text-[11px] text-slate-300 line-clamp-1">Solucionarios en video y guías PDF</p>
+              <div class="tab-progress" id="tab-progress-2"></div>
+            </div>
+
+          </div>
+
+          <!-- Flechas de navegación secundaria y accesos rápidos -->
+          <div class="flex items-center justify-between pt-4 mt-3">
+            <div class="flex items-center gap-2 text-[11px] text-slate-400">
+              <i data-lucide="info" class="w-3.5 h-3.5 text-blue-400"></i>
+              <span>Pasa el cursor para pausar • Puedes usar las flechas del teclado ◄ ►</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button onclick="prevSlide()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/25 border border-white/20 flex items-center justify-center text-white transition-all transform hover:scale-105 active:scale-95 shadow-md" aria-label="Anterior">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+              <button onclick="nextSlide()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/25 border border-white/20 flex items-center justify-center text-white transition-all transform hover:scale-105 active:scale-95 shadow-md" aria-label="Siguiente">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PARTE 2: SOLICITA INFORMACIÓN & EQUIPO HORIZON (Ref. Imagen 2) -->
+    <!-- COLOR: Fondo Oscuro High-Tech (#0b1120 a #050811) con Tarjeta Blanca -->
+    <!-- ========================================================================= -->
+    <section id="d2-solicita-info" class="py-16 lg:py-24 bg-[#0b1120] text-white border-b border-slate-800 relative overflow-hidden">
+      <!-- Glow ambiental suave -->
+      <div class="absolute top-1/2 left-0 w-80 h-80 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 space-y-12">
+        
+        <!-- Fila Superior de Modalidades (Píldoras / Cajas con Borde como en Imagen 2) -->
+        <div class="grid sm:grid-cols-3 gap-4 lg:gap-6 reveal-on-scroll">
+          
+          <!-- Box A DISTANCIA -->
+          <div class="border-2 border-slate-700/80 hover:border-blue-500 bg-slate-900/60 p-5 rounded-2xl transition-all card-hover-effect">
+            <span class="inline-block border border-white px-3 py-1 font-black text-xs uppercase tracking-wider text-white mb-2 rounded">
+              A DISTANCIA
+            </span>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              100% virtual desde donde estés y a tu propio ritmo con clases grabadas y aula 24/7.
+            </p>
+          </div>
+
+          <!-- Box PRESENCIAL -->
+          <div class="border-2 border-blue-500/80 bg-slate-900/90 p-5 rounded-2xl transition-all shadow-lg shadow-blue-500/10 card-hover-effect">
+            <span class="inline-block border border-blue-400 bg-blue-600/20 px-3 py-1 font-black text-xs uppercase tracking-wider text-blue-300 mb-2 rounded">
+              PRESENCIAL
+            </span>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Clases presenciales en sede central con simulacros en vivo y asesorías continuas con docentes.
+            </p>
+          </div>
+
+          <!-- Box SEMIPRESENCIAL -->
+          <div class="border-2 border-slate-700/80 hover:border-blue-500 bg-slate-900/60 p-5 rounded-2xl transition-all card-hover-effect">
+            <span class="inline-block border border-white px-3 py-1 font-black text-xs uppercase tracking-wider text-white mb-2 rounded">
+              SEMIPRESENCIAL
+            </span>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Teoría virtual flexible durante la semana y maratones de simulacros presenciales los sábados.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Fila Principal: Imagen del Equipo/Fundador a la izquierda + Formulario Blanco a la derecha -->
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Columna Izquierda: Espacio Dedicado para la Foto del Equipo y el Fundador -->
+          <div class="lg:col-span-6 reveal-on-scroll reveal-left space-y-6">
+            <div class="relative bg-gradient-to-br from-slate-900/90 to-[#121c38]/90 border-2 border-dashed border-blue-500/40 rounded-3xl p-8 sm:p-10 text-center space-y-6 overflow-hidden shadow-2xl group hover:border-blue-400 transition-all">
+              
+              <!-- Decoración de fondo -->
+              <div class="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px] opacity-15 pointer-events-none"></div>
+
+              <!-- Badge Institucional -->
+              <div class="inline-flex items-center gap-2 bg-blue-500/20 text-blue-300 border border-blue-400/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
+                Plana Docente & Dirección Académica
+              </div>
+
+              <!-- Ilustración / Placeholder del Equipo y Fundador -->
+              <div class="relative py-6 flex items-center justify-center">
+                <div class="flex items-center -space-x-4">
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-slate-800 border-4 border-[#0b1120] text-blue-400 flex items-center justify-center shadow-xl font-black text-xl">
+                    <i data-lucide="user-check" class="w-8 h-8"></i>
+                  </div>
+                  <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-blue-600 border-4 border-[#0b1120] text-white flex items-center justify-center shadow-2xl font-black text-2xl z-10">
+                    <i data-lucide="shield" class="w-10 h-10"></i>
+                  </div>
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-slate-800 border-4 border-[#0b1120] text-cyan-300 flex items-center justify-center shadow-xl font-black text-xl">
+                    <i data-lucide="users" class="w-8 h-8"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Texto explicativo para el dueño de la academia -->
+              <div class="space-y-2 relative z-10">
+                <h4 class="text-xl sm:text-2xl font-black text-white">
+                  Equipo Especialista de Horizon Academia
+                </h4>
+                <p class="text-xs text-blue-200/80 font-medium">
+                  📷 [Zona para colocar la foto oficial de tu amigo (fundador) y su equipo docente]
+                </p>
+                <!-- TEXTO SOLICITADO -->
+                <p class="text-xs text-slate-300 leading-relaxed max-w-md mx-auto pt-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+                </p>
+              </div>
+
+              <!-- Puntos Clave de Confianza -->
+              <div class="grid grid-cols-2 gap-3 pt-2 text-left text-xs font-semibold text-slate-200">
+                <div class="bg-black/40 border border-slate-700/60 p-3 rounded-xl flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                  <span>Docentes con amplia trayectoria</span>
+                </div>
+                <div class="bg-black/40 border border-slate-700/60 p-3 rounded-xl flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                  <span>Acompañamiento personalizado</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Tarjeta Blanca "Solicita Información" (Ref. Imagen 2) -->
+          <div class="lg:col-span-6 reveal-on-scroll reveal-right delay-200">
+            <div class="bg-white text-slate-900 p-8 sm:p-10 rounded-3xl shadow-2xl border border-slate-200 relative">
+              
+              <div class="mb-6">
+                <h3 class="text-2xl sm:text-3xl font-black text-[#1e1b4b] tracking-tight">
+                  Solicita información
+                </h3>
+                <p class="text-xs font-bold text-slate-500 mt-1">
+                  Tú eliges cómo estudiar
+                </p>
+              </div>
+
+              <form onsubmit="event.preventDefault(); alert('Solicitud registrada. Un asesor de admisión se pondrá en contacto.');" class="space-y-4">
+                
+                <!-- Selector de Modalidad (Pestañas como en Imagen 2) -->
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1.5">Modalidad de estudio</label>
+                  <div class="grid grid-cols-3 gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200" id="form-modality-tabs">
+                    <button type="button" onclick="selectFormModality(this, 'Presencial')" class="modality-tab-btn py-2 text-xs font-black rounded-lg transition-all bg-[#1e1b4b] text-white shadow">
+                      Presencial
+                    </button>
+                    <button type="button" onclick="selectFormModality(this, 'Semipresencial')" class="modality-tab-btn py-2 text-xs font-bold rounded-lg transition-all text-slate-600 hover:text-slate-900">
+                      Semipresencial
+                    </button>
+                    <button type="button" onclick="selectFormModality(this, 'A Distancia')" class="modality-tab-btn py-2 text-xs font-bold rounded-lg transition-all text-slate-600 hover:text-slate-900">
+                      A Distancia
+                    </button>
+                  </div>
+                  <input type="hidden" id="selected-modality-input" value="Presencial" />
+                </div>
+
+                <!-- Campos de Texto en Dos Columnas -->
+                <div class="grid sm:grid-cols-2 gap-3.5">
+                  <div>
+                    <label class="block text-[11px] font-bold text-slate-700 mb-1">Nombres</label>
+                    <input type="text" placeholder="Ej. Juan" required class="w-full text-xs p-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:outline-none focus:border-[#1e1b4b] focus:bg-white transition-colors" />
+                  </div>
+                  <div>
+                    <label class="block text-[11px] font-bold text-slate-700 mb-1">Apellidos</label>
+                    <input type="text" placeholder="Ej. Pérez Gómez" required class="w-full text-xs p-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:outline-none focus:border-[#1e1b4b] focus:bg-white transition-colors" />
+                  </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-3.5">
+                  <div>
+                    <label class="block text-[11px] font-bold text-slate-700 mb-1">Fecha de nacimiento o DNI</label>
+                    <input type="text" placeholder="Ej. 74859612 o DD/MM/AAAA" required class="w-full text-xs p-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:outline-none focus:border-[#1e1b4b] focus:bg-white transition-colors" />
+                  </div>
+                  <div>
+                    <label class="block text-[11px] font-bold text-slate-700 mb-1">Correo electrónico</label>
+                    <input type="email" placeholder="correo@ejemplo.com" required class="w-full text-xs p-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:outline-none focus:border-[#1e1b4b] focus:bg-white transition-colors" />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-700 mb-1">Celular / WhatsApp</label>
+                  <input type="tel" placeholder="Ej. 987 654 321" required class="w-full text-xs p-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:outline-none focus:border-[#1e1b4b] focus:bg-white transition-colors" />
+                </div>
+
+                <!-- Footer del formulario con indicador de paso y botón siguiente como en Imagen 2 -->
+                <div class="pt-3 flex items-center justify-between">
+                  <span class="text-xs font-mono font-bold text-slate-400">1 de 2</span>
+                  <button type="submit" class="bg-[#1e1b4b] hover:bg-[#2e269f] text-white font-black text-xs uppercase tracking-wider px-8 py-3.5 rounded-xl shadow-lg transition-all flex items-center gap-2">
+                    <span>Siguiente</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  </button>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PARTE 3: NUESTROS CICLOS PRE-INSTITUTO (Ref. Imagen 3) -->
+    <!-- COLOR: Blanco Puro / Slate Suave (#ffffff / #f8fafc) -> Contraste Nítido -->
+    <!-- ========================================================================= -->
+    <section id="d2-ciclos" class="py-20 bg-white text-slate-900 border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14 reveal-on-scroll">
+          <span class="text-blue-700 text-xs font-black uppercase tracking-widest">NUESTROS CICLOS</span>
+          <h3 class="text-3xl sm:text-4xl font-black text-slate-900 mt-1 mb-3">Ciclos Pre-Instituto Disponibles</h3>
+          <!-- TEXTO SOLICITADO -->
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 items-stretch">
+          
+          <!-- CICLO 1: Ciclo Anual Pre-Instituto (Ref. Imagen 3) -->
+          <div class="bg-white border border-slate-200 rounded-3xl p-7 sm:p-8 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between reveal-on-scroll card-hover-effect delay-100">
+            <div>
+              <span class="inline-block text-[10px] font-black uppercase tracking-wider bg-blue-100 text-blue-700 px-3 py-1 rounded-full mb-3">
+                FUNDAMENTOS
+              </span>
+              <h4 class="text-2xl font-black text-slate-900 mb-3">Ciclo Anual Pre-Instituto</h4>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-600 leading-relaxed mb-6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+              <ul class="space-y-3 text-xs text-slate-700 font-semibold mb-6">
+                <li class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                  <span>Teoría completa desde cero</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                  <span>Guías semanales con solucionario</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                  <span>Simulacros quincenales tipo instituto</span>
+                </li>
+              </ul>
+            </div>
+            <a href="#d2-solicita-info" class="w-full py-3.5 text-center rounded-xl bg-slate-900 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-wider transition-colors shadow">
+              CONSULTAR HORARIOS
+            </a>
+          </div>
+
+          <!-- CICLO 2: Ciclo Semestral Intensivo (MÁS RECOMENDADO - Ref. Imagen 3) -->
+          <div class="bg-white border-2 border-blue-600 rounded-3xl p-7 sm:p-8 shadow-2xl shadow-blue-500/15 flex flex-col justify-between relative transform lg:-translate-y-2 reveal-on-scroll card-hover-effect delay-200">
+            <!-- Badge Superior MÁS RECOMENDADO -->
+            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full shadow-md">
+              MÁS RECOMENDADO
+            </span>
+            <div>
+              <span class="inline-block text-[10px] font-black uppercase tracking-wider bg-amber-100 text-amber-800 px-3 py-1 rounded-full mb-3">
+                INTENSIVO
+              </span>
+              <h4 class="text-2xl font-black text-slate-900 mb-3">Ciclo Semestral Intensivo</h4>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-600 leading-relaxed mb-6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+              <ul class="space-y-3 text-xs text-slate-700 font-semibold mb-6">
+                <li class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                  <span>100% Banco de preguntas de exámenes pasados</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                  <span>Simulacros semanales con ranking real</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                  <span>Acceso 24/7 a grabaciones en el Aula Virtual</span>
+                </li>
+              </ul>
+            </div>
+            <a href="#d2-solicita-info" class="w-full py-3.5 text-center rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-wider transition-colors shadow-lg shadow-blue-600/30">
+              INSCRIBIRME A ESTE CICLO
+            </a>
+          </div>
+
+          <!-- CICLO 3: Ciclo Repaso y Maratón Final (Ref. Imagen 3) -->
+          <div class="bg-white border border-slate-200 rounded-3xl p-7 sm:p-8 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between reveal-on-scroll card-hover-effect delay-300">
+            <div>
+              <span class="inline-block text-[10px] font-black uppercase tracking-wider bg-slate-200 text-slate-800 px-3 py-1 rounded-full mb-3">
+                RECTA FINAL
+              </span>
+              <h4 class="text-2xl font-black text-slate-900 mb-3">Ciclo Repaso y Maratón Final</h4>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-600 leading-relaxed mb-6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+              <ul class="space-y-3 text-xs text-slate-700 font-semibold mb-6">
+                <li class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                  <span>Preguntas fijas para el examen oficial</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                  <span>Maratones de fin de semana</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                  <span>Técnicas de resolución rápida de problemas</span>
+                </li>
+              </ul>
+            </div>
+            <a href="#d2-solicita-info" class="w-full py-3.5 text-center rounded-xl bg-slate-900 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-wider transition-colors shadow">
+              CONSULTAR HORARIOS
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PARTE 4: 5 RAZONES PARA PREPARARTE EN HORIZON (Traído de Diseño 1) -->
+    <!-- COLOR: Fondo Oscuro Noche / Cyber Blue (#0a1122) -->
+    <!-- ========================================================================= -->
+        <!-- ========================================================================= -->
+    <!-- PARTE 4: 5 RAZONES PARA PREPARARTE EN HORIZON (TONO 1: AZUL ÍNDIGO IMPERIAL) -->
+    <!-- SIGUE EL PATRÓN DE LA PARTE 1: Degradado Azul/Púrpura, Malla y Glows -->
+    <!-- ========================================================================= -->
+    <section id="d2-razones" class="py-20 lg:py-24 bg-gradient-to-r from-[#1c1363] via-[#171e5c] to-[#0a0d2c] text-white border-b border-indigo-950/60 relative overflow-hidden">
+      <!-- Malla de micro-puntos y orbes ambientales idénticos a Parte 1 -->
+      <div class="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
+      <div class="absolute -top-20 -right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-[140px] pointer-events-none"></div>
+      <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-purple-500/20 rounded-full blur-[140px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-amber-300 border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider mb-3 shadow-sm">
+            <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i>
+            <span>Método Comprobado • Alto Rendimiento</span>
+          </div>
+          <h3 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-1 mb-3 tracking-tight">
+            5 Razones para Prepararte en <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400">Horizon</span>
+          </h3>
+          <!-- TEXTO SOLICITADO -->
+          <p class="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-2xl mx-auto">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+          </p>
+        </div>
+
+        <!-- Las 5 Tarjetas con el ADN visual de alta tecnología del Slider de Parte 1 -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-5 items-stretch">
+          
+          <!-- Razón 01 -->
+          <div class="relative bg-gradient-to-br from-[#0c0d24]/95 via-[#131938]/95 to-[#16204d]/95 border border-indigo-400/30 hover:border-amber-400/60 p-6 rounded-3xl shadow-xl backdrop-blur-md transition-all flex flex-col justify-between group card-hover-effect reveal-on-scroll delay-100">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 font-mono">01</span>
+                <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                  <i data-lucide="target" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <h5 class="font-black text-base text-white mb-2 group-hover:text-amber-300 transition-colors">Examen Idéntico</h5>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-indigo-500/20 flex items-center gap-1.5 text-[10px] font-mono text-amber-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+              <span>Temario oficial único</span>
+            </div>
+          </div>
+
+          <!-- Razón 02 -->
+          <div class="relative bg-gradient-to-br from-[#0c0d24]/95 via-[#131938]/95 to-[#16204d]/95 border border-indigo-400/30 hover:border-cyan-400/60 p-6 rounded-3xl shadow-xl backdrop-blur-md transition-all flex flex-col justify-between group card-hover-effect reveal-on-scroll delay-150">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400 font-mono">02</span>
+                <div class="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                  <i data-lucide="users" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <h5 class="font-black text-base text-white mb-2 group-hover:text-cyan-300 transition-colors">Docentes Especialistas</h5>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-indigo-500/20 flex items-center gap-1.5 text-[10px] font-mono text-cyan-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+              <span>Plana con trayectoria</span>
+            </div>
+          </div>
+
+          <!-- Razón 03 -->
+          <div class="relative bg-gradient-to-br from-[#0c0d24]/95 via-[#131938]/95 to-[#16204d]/95 border border-indigo-400/30 hover:border-emerald-400/60 p-6 rounded-3xl shadow-xl backdrop-blur-md transition-all flex flex-col justify-between group card-hover-effect reveal-on-scroll delay-200">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-400 font-mono">03</span>
+                <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                  <i data-lucide="book-open" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <h5 class="font-black text-base text-white mb-2 group-hover:text-emerald-300 transition-colors">Banco de Preguntas</h5>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-indigo-500/20 flex items-center gap-1.5 text-[10px] font-mono text-emerald-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span>+2,500 Claves resueltas</span>
+            </div>
+          </div>
+
+          <!-- Razón 04 -->
+          <div class="relative bg-gradient-to-br from-[#0c0d24]/95 via-[#131938]/95 to-[#16204d]/95 border border-indigo-400/30 hover:border-purple-400/60 p-6 rounded-3xl shadow-xl backdrop-blur-md transition-all flex flex-col justify-between group card-hover-effect reveal-on-scroll delay-250">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-indigo-400 font-mono">04</span>
+                <div class="w-9 h-9 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center">
+                  <i data-lucide="laptop" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <h5 class="font-black text-base text-white mb-2 group-hover:text-purple-300 transition-colors">Aula Virtual 24/7</h5>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-indigo-500/20 flex items-center gap-1.5 text-[10px] font-mono text-purple-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+              <span>Grabaciones y PDFs</span>
+            </div>
+          </div>
+
+          <!-- Razón 05 -->
+          <div class="relative bg-gradient-to-br from-[#0c0d24]/95 via-[#131938]/95 to-[#16204d]/95 border border-indigo-400/30 hover:border-amber-400/60 p-6 rounded-3xl shadow-xl backdrop-blur-md transition-all flex flex-col justify-between group card-hover-effect reveal-on-scroll delay-300 sm:col-span-2 lg:col-span-1">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-rose-400 font-mono">05</span>
+                <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                  <i data-lucide="trending-up" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <h5 class="font-black text-base text-white mb-2 group-hover:text-amber-300 transition-colors">Alto % de Ingreso</h5>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-indigo-500/20 flex items-center gap-1.5 text-[10px] font-mono text-amber-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+              <span>Resultados comprobados</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PARTE 5: INGRESANTES QUE LOGRARON SU META (TONO 3: BLANCO PURO INSTITUCIONAL) -->
+    <!-- SIGUE EL PATRÓN DE LA PARTE 3 (CICLOS): Fondo Blanco Puro, Tarjetas Estilizadas -->
+    <!-- ========================================================================= -->
+    <section id="d2-ingresantes" class="py-20 lg:py-24 bg-white text-slate-900 border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+          <span class="text-blue-700 text-xs font-black uppercase tracking-widest bg-blue-50 border border-blue-200/80 px-3.5 py-1.5 rounded-full inline-block mb-3">
+            NUESTROS RESULTADOS • CASOS DE ÉXITO
+          </span>
+          <h3 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 mt-1 mb-3 tracking-tight">
+            Ingresantes que Lograron su Meta
+          </h3>
+          <!-- TEXTO SOLICITADO -->
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-stretch">
+          
+          <!-- Testimonio 1 -->
+          <div class="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:border-blue-500/40 transition-all flex flex-col justify-between reveal-on-scroll card-hover-effect delay-150 relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-amber-400/10 rounded-bl-full pointer-events-none"></div>
+            
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-4">
+                  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-700 to-indigo-900 text-white flex items-center justify-center font-black text-xl shadow-lg shadow-blue-700/25">
+                    MC
+                  </div>
+                  <div>
+                    <h5 class="font-black text-lg text-slate-900">Mateo Carranza</h5>
+                    <span class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full mt-1">
+                      <i data-lucide="trophy" class="w-3.5 h-3.5 text-amber-600"></i>
+                      1° Puesto Examen Oficial del Instituto
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-sm text-slate-700 leading-relaxed italic mb-6">
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit."
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-semibold">
+              <span class="flex items-center gap-1 text-blue-700 font-bold">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                Ciclo Semestral Intensivo
+              </span>
+              <span class="font-mono text-slate-400">Admisión 2025</span>
+            </div>
+          </div>
+
+          <!-- Testimonio 2 -->
+          <div class="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:border-blue-500/40 transition-all flex flex-col justify-between reveal-on-scroll card-hover-effect delay-300 relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-bl-full pointer-events-none"></div>
+
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-4">
+                  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-900 to-blue-950 text-white flex items-center justify-center font-black text-xl shadow-lg shadow-slate-900/25">
+                    SV
+                  </div>
+                  <div>
+                    <h5 class="font-black text-lg text-slate-900">Sofía Valdivia</h5>
+                    <span class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full mt-1">
+                      <i data-lucide="star" class="w-3.5 h-3.5 text-blue-600"></i>
+                      Máximo Puntaje en Ciencias
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-sm text-slate-700 leading-relaxed italic mb-6">
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit."
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-semibold">
+              <span class="flex items-center gap-1 text-blue-700 font-bold">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                Modalidad Virtual & Simulacros
+              </span>
+              <span class="font-mono text-slate-400">Admisión 2025</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PARTE 6: EL EXAMEN ÚNICO & PREGUNTAS FRECUENTES (TONO 2: DARK HIGH-TECH SLATE) -->
+    <!-- SIGUE EL PATRÓN DE LA PARTE 2: Fondo #0b1120, Acabados High-Tech y Cohesión -->
+    <!-- ========================================================================= -->
+    <section id="d2-examen" class="py-20 lg:py-24 bg-[#0b1120] text-white border-b border-slate-800 relative overflow-hidden">
+      <!-- Glows de iluminación idénticos a Parte 2 -->
+      <div class="absolute -top-24 -left-20 w-80 h-80 bg-blue-600/10 rounded-full blur-[130px] pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-20 w-80 h-80 bg-purple-600/10 rounded-full blur-[130px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+          <span class="text-blue-400 text-xs font-black uppercase tracking-widest bg-blue-500/10 border border-blue-500/20 px-3.5 py-1.5 rounded-full inline-block mb-3">
+            TEMARIO OFICIAL • MISMA PRUEBA PARA TODOS
+          </span>
+          <h3 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-1 mb-3 tracking-tight">
+            Estructura del Examen Único del Instituto
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl mx-auto">
+            Todos los postulantes rinden la misma prueba de admisión oficial. En Horizon Academia dominas cada una de sus 4 áreas clave:
+          </p>
+        </div>
+
+        <!-- 4 Tarjetas de Áreas con diseño refinado de alta tecnología -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          
+          <!-- Área 1 -->
+          <div class="p-7 bg-[#0f172a]/95 rounded-3xl border border-slate-800 hover:border-blue-500/50 transition-all reveal-on-scroll card-hover-effect delay-100 flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold mb-5 group-hover:scale-110 transition-transform">
+                <i data-lucide="calculator" class="w-6 h-6"></i>
+              </div>
+              <h4 class="font-black text-lg text-white mb-1">Razonamiento Matemático</h4>
+              <span class="text-[11px] font-bold text-blue-400 block mb-3">Aritmética, Álgebra y Geometría</span>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+            <div class="pt-4 mt-5 border-t border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
+              <span>Resolución rápida</span>
+              <span class="text-blue-400 font-bold">35% del Examen</span>
+            </div>
+          </div>
+
+          <!-- Área 2 -->
+          <div class="p-7 bg-[#0f172a]/95 rounded-3xl border border-slate-800 hover:border-amber-500/50 transition-all reveal-on-scroll card-hover-effect delay-200 flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold mb-5 group-hover:scale-110 transition-transform">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+              </div>
+              <h4 class="font-black text-lg text-white mb-1">Razonamiento Verbal</h4>
+              <span class="text-[11px] font-bold text-amber-400 block mb-3">Comprensión Lectora y Vocabulario</span>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+            <div class="pt-4 mt-5 border-t border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
+              <span>Técnicas de descarte</span>
+              <span class="text-amber-400 font-bold">25% del Examen</span>
+            </div>
+          </div>
+
+          <!-- Área 3 -->
+          <div class="p-7 bg-[#0f172a]/95 rounded-3xl border border-slate-800 hover:border-indigo-500/50 transition-all reveal-on-scroll card-hover-effect delay-300 flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold mb-5 group-hover:scale-110 transition-transform">
+                <i data-lucide="atom" class="w-6 h-6"></i>
+              </div>
+              <h4 class="font-black text-lg text-white mb-1">Ciencias Básicas</h4>
+              <span class="text-[11px] font-bold text-indigo-400 block mb-3">Física y Química Aplicada</span>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+            <div class="pt-4 mt-5 border-t border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
+              <span>Fórmulas clave</span>
+              <span class="text-indigo-400 font-bold">25% del Examen</span>
+            </div>
+          </div>
+
+          <!-- Área 4 -->
+          <div class="p-7 bg-[#0f172a]/95 rounded-3xl border border-slate-800 hover:border-emerald-500/50 transition-all reveal-on-scroll card-hover-effect delay-400 flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold mb-5 group-hover:scale-110 transition-transform">
+                <i data-lucide="compass" class="w-6 h-6"></i>
+              </div>
+              <h4 class="font-black text-lg text-white mb-1">Cultura General</h4>
+              <span class="text-[11px] font-bold text-emerald-400 block mb-3">Actualidad y Lógica General</span>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+            <div class="pt-4 mt-5 border-t border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
+              <span>Reactivos tipo</span>
+              <span class="text-emerald-400 font-bold">15% del Examen</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ===================================================================== -->
+        <!-- ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ) DENTRO DE TONO 2               -->
+        <!-- ===================================================================== -->
+        <div id="d2-faq" class="max-w-4xl mx-auto pt-10 border-t border-slate-800/80">
+          <div class="text-center mb-12 reveal-on-scroll">
+            <span class="text-blue-400 text-xs font-black uppercase tracking-widest bg-blue-500/10 border border-blue-500/20 px-3.5 py-1.5 rounded-full inline-block mb-3">
+              RESOLVEMOS TUS DUDAS
+            </span>
+            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-1">
+              Preguntas Frecuentes
+            </h3>
+          </div>
+
+          <div class="space-y-4">
+            
+            <div class="p-6 bg-[#0f172a]/95 border border-slate-800 hover:border-blue-500/40 rounded-2xl reveal-on-scroll card-hover-effect delay-100 shadow-lg transition-all">
+              <h5 class="font-bold text-sm sm:text-base text-white mb-2 flex items-center gap-3">
+                <i data-lucide="help-circle" class="w-5 h-5 text-blue-400 shrink-0"></i>
+                <span>¿Cómo acceden los estudiantes a las clases y materiales?</span>
+              </h5>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed pl-8">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+
+            <div class="p-6 bg-[#0f172a]/95 border border-slate-800 hover:border-blue-500/40 rounded-2xl reveal-on-scroll card-hover-effect delay-200 shadow-lg transition-all">
+              <h5 class="font-bold text-sm sm:text-base text-white mb-2 flex items-center gap-3">
+                <i data-lucide="help-circle" class="w-5 h-5 text-blue-400 shrink-0"></i>
+                <span>¿Cuáles son los métodos de pago y facilidades de cuotas?</span>
+              </h5>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed pl-8">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+
+            <div class="p-6 bg-[#0f172a]/95 border border-slate-800 hover:border-blue-500/40 rounded-2xl reveal-on-scroll card-hover-effect delay-300 shadow-lg transition-all">
+              <h5 class="font-bold text-sm sm:text-base text-white mb-2 flex items-center gap-3">
+                <i data-lucide="help-circle" class="w-5 h-5 text-blue-400 shrink-0"></i>
+                <span>¿Los simulacros tienen solucionario en video?</span>
+              </h5>
+              <!-- TEXTO SOLICITADO -->
+              <p class="text-xs text-slate-300 leading-relaxed pl-8">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FOOTER INSTITUCIONAL: INTEGRADO EN LA PALETA OFICIAL                       -->
+    <!-- ========================================================================= -->
+    <footer class="bg-[#060913] text-slate-400 py-14 text-xs border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center space-y-6">
+        <!-- Logo Oficial Horizon Academia con acabado nítido y transparencia -->
+        <a href="#" class="inline-block group transition-transform duration-200 hover:scale-105">
+          <img src="assets/logo-brand.png" alt="Horizon Academia" class="h-10 sm:h-11 mx-auto object-contain drop-shadow-[0_4px_16px_rgba(37,99,235,0.45)] transition-all group-hover:drop-shadow-[0_6px_22px_rgba(56,189,248,0.6)]" />
+        </a>
+
+        <!-- TEXTO SOLICITADO -->
+        <p class="max-w-xl mx-auto leading-relaxed text-slate-400 text-xs">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-6 font-bold pt-2 text-slate-300">
+          <a href="#d2-noticias" class="hover:text-blue-400 transition-colors">Noticias</a>
+          <a href="#d2-solicita-info" class="hover:text-blue-400 transition-colors">Solicitar Información</a>
+          <a href="#d2-ciclos" class="hover:text-blue-400 transition-colors">Ciclos Académicos</a>
+          <a href="#d2-razones" class="hover:text-blue-400 transition-colors">¿Por qué Horizon?</a>
+          <a href="#d2-ingresantes" class="hover:text-blue-400 transition-colors">Ingresantes</a>
+          <a href="#d2-examen" class="hover:text-blue-400 transition-colors">El Examen Único</a>
+          <a href="#d2-faq" class="hover:text-blue-400 transition-colors">Preguntas Frecuentes</a>
+          <button onclick="openAulaModal()" class="hover:text-blue-400 transition-colors cursor-pointer">Aula Virtual</button>
+        </div>
+
+        <div class="pt-6 border-t border-slate-800/60 text-slate-500 text-[11px] flex flex-col sm:flex-row items-center justify-between gap-3 max-w-4xl mx-auto">
+          <span>© 2026 Horizon Academia. Preparación exclusiva para el Examen Oficial de Admisión.</span>
+          <span class="font-mono text-slate-400">Diseño Institucional 100% Oficial</span>
+        </div>
+      </div>
+    </footer>
+</main>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL INFORMATIVO DE AULA VIRTUAL (FASE 2) -->
+  <!-- ========================================================================= -->
+  <div id="modal-aula" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 text-white max-w-md w-full rounded-2xl p-6 border border-blue-500/40 shadow-2xl relative">
+      <button onclick="closeAulaModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center mb-4">
+        <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+      </div>
+
+      <h4 class="text-xl font-bold mb-2">Aula Virtual (Fase 2)</h4>
+      <!-- TEXTO SOLICITADO -->
+      <p class="text-xs text-slate-300 leading-relaxed mb-4">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan nisl sit amet faucibus accumsan. Aliquam fringilla erat non est blandit.
+      </p>
+
+      <div class="p-3.5 bg-slate-800 rounded-xl border border-slate-700 text-xs text-slate-300 space-y-1.5 mb-5">
+        <p class="font-bold text-blue-400">💡 Plan de Desarrollo:</p>
+        <p>✅ 1. Web oficial de Horizon Academia activa (Diseño seleccionado).</p>
+        <p>🚀 2. Siguiente fase: Plataforma de alumnos (clases, materiales descargables y simulacros en línea).</p>
+      </div>
+
+      <button onclick="closeAulaModal()" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-all shadow-lg shadow-blue-600/30">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- Botón Flotante Volver Arriba -->
+  <button id="btn-back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-slate-900/90 hover:bg-blue-600 text-white shadow-2xl border border-slate-700/80 backdrop-blur-md transition-all duration-300 transform opacity-0 translate-y-6 pointer-events-none hover:scale-110 flex items-center justify-center group" title="Volver al inicio" aria-label="Volver arriba">
+    <i data-lucide="arrow-up" class="w-5 h-5 group-hover:-translate-y-0.5 transition-transform"></i>
+  </button>
+  <!-- ========================================================================= -->
+  <!-- SCRIPTS -->
+  <!-- ========================================================================= -->
+  <script>
+    // Inicializar íconos Lucide
+    lucide.createIcons();
+
+    // Barra de progreso de lectura y botón flotante de volver arriba
+    const progressBar = document.getElementById('scroll-progress-bar');
+    const backToTopBtn = document.getElementById('btn-back-to-top');
+
+    function handleScroll() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      
+      if (progressBar) {
+        progressBar.style.width = `${scrollPercent}%`;
+      }
+
+      if (backToTopBtn) {
+        if (scrollTop > 320) {
+          backToTopBtn.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+          backToTopBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        } else {
+          backToTopBtn.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+          backToTopBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        }
+      }
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Sistema de animación Scroll Reveal con IntersectionObserver
+    let scrollObserver;
+    function initScrollReveal() {
+      if (scrollObserver) {
+        scrollObserver.disconnect();
+      }
+
+      const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+      scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            scrollObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      revealElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 30) {
+          el.classList.add('revealed');
+        } else {
+          el.classList.remove('revealed');
+          scrollObserver.observe(el);
+        }
+      });
+    }
+
+    // Modal Aula Virtual
+    function openAulaModal() {
+      document.getElementById('modal-aula').classList.remove('hidden');
+    }
+    function closeAulaModal() {
+      document.getElementById('modal-aula').classList.add('hidden');
+    }
+
+    // =========================================================================
+    // MOTOR DINÁMICO DEL SLIDER DE NOTICIAS (PARTE 1)
+    // =========================================================================
+    const TOTAL_SLIDES = 3;
+    const SLIDE_DURATION = 6000; // 6 segundos
+    const PROGRESS_INTERVAL = 60; // Actualización fluida cada 60ms
+
+    let currentNewsSlide = 0;
+    let slideTimer = null;
+    let slideProgress = 0;
+    let isSliderPaused = false;
+
+    function updateSliderUI() {
+      // 1. Visibilidad y animación de los slides
+      const slides = document.querySelectorAll('.news-slide');
+      slides.forEach((slide, idx) => {
+        if (idx === currentNewsSlide) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      // 2. Contador numérico
+      const currNum = document.getElementById('slide-current-num');
+      if (currNum) {
+        currNum.textContent = String(currentNewsSlide + 1).padStart(2, '0');
+      }
+
+      // 3. Pestañas inferiores dinámicas
+      for (let i = 0; i < TOTAL_SLIDES; i++) {
+        const tab = document.getElementById(`slider-tab-${i}`);
+        const prog = document.getElementById(`tab-progress-${i}`);
+        if (tab) {
+          if (i === currentNewsSlide) {
+            tab.classList.add('active');
+          } else {
+            tab.classList.remove('active');
+          }
+        }
+        if (prog && i !== currentNewsSlide) {
+          prog.style.width = '0%';
+        }
+      }
+
+      // Refrescar iconos
+      lucide.createIcons();
+    }
+
+    function resetSlideProgress() {
+      slideProgress = 0;
+      const prog = document.getElementById(`tab-progress-${currentNewsSlide}`);
+      if (prog) prog.style.width = '0%';
+    }
+
+    function goToSlide(index) {
+      currentNewsSlide = (index + TOTAL_SLIDES) % TOTAL_SLIDES;
+      resetSlideProgress();
+      updateSliderUI();
+    }
+
+    function nextSlide() {
+      goToSlide(currentNewsSlide + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentNewsSlide - 1);
+    }
+
+    // Temporizador continuo para el avance de la barra de progreso
+    function startSliderEngine() {
+      if (slideTimer) clearInterval(slideTimer);
+      slideTimer = setInterval(() => {
+        if (isSliderPaused) return;
+
+        slideProgress += (PROGRESS_INTERVAL / SLIDE_DURATION) * 100;
+        const prog = document.getElementById(`tab-progress-${currentNewsSlide}`);
+        if (prog) {
+          prog.style.width = `${Math.min(100, slideProgress)}%`;
+        }
+
+        if (slideProgress >= 100) {
+          nextSlide();
+        }
+      }, PROGRESS_INTERVAL);
+    }
+
+    function toggleSliderAutoPlay() {
+      isSliderPaused = !isSliderPaused;
+      updatePauseUI();
+    }
+
+    function updatePauseUI() {
+      const icon = document.getElementById('slider-status-icon');
+      const text = document.getElementById('slider-status-text');
+      if (icon && text) {
+        if (isSliderPaused) {
+          icon.className = 'w-2 h-2 rounded-full bg-amber-400';
+          text.textContent = 'Pausado ⏸';
+        } else {
+          icon.className = 'w-2 h-2 rounded-full bg-emerald-400';
+          text.textContent = 'Auto 6s ⚡';
+        }
+      }
+    }
+
+    // Configurar eventos de hover para pausar suavemente
+    const sliderSection = document.getElementById('d2-noticias');
+    if (sliderSection) {
+      sliderSection.addEventListener('mouseenter', () => {
+        isSliderPaused = true;
+        updatePauseUI();
+      });
+      sliderSection.addEventListener('mouseleave', () => {
+        isSliderPaused = false;
+        updatePauseUI();
+      });
+
+      // Soporte táctil en móviles (Swipe)
+      let touchStartX = 0;
+      let touchEndX = 0;
+      sliderSection.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      sliderSection.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > 45) {
+          if (diff < 0) nextSlide();
+          else prevSlide();
+        }
+      }, { passive: true });
+    }
+
+    // Navegación con teclado (Flechas ◄ ►)
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // =========================================================================
+    // Selector de Pestañas de Modalidad en el Formulario (Parte 2)
+    // =========================================================================
+    function selectFormModality(btn, modality) {
+      const tabBtns = document.querySelectorAll('.modality-tab-btn');
+      tabBtns.forEach(b => {
+        b.className = 'modality-tab-btn py-2 text-xs font-bold rounded-lg transition-all text-slate-600 hover:text-slate-900';
+      });
+      btn.className = 'modality-tab-btn py-2 text-xs font-black rounded-lg transition-all bg-[#1e1b4b] text-white shadow';
+      const hiddenInput = document.getElementById('selected-modality-input');
+      if (hiddenInput) {
+        hiddenInput.value = modality;
+      }
+    }
+
+    // Inicializaciones al cargar el DOM
+    window.addEventListener('DOMContentLoaded', () => {
+      handleScroll();
+      initScrollReveal();
+      updateSliderUI();
+      startSliderEngine();
+    });
+  </script>
+</body>
+</html>
