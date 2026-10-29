@@ -1,0 +1,86 @@
+/* Refinamientos del diseño original: una paleta azul y una tipografía coherente. */
+.horizon-original{--horizon-accent:#7dd3fc;--horizon-focus:#38bdf8;font-family:'Inter',Arial,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.horizon-original .original-skip-link{position:absolute;top:-100px;left:16px;z-index:110;padding:12px 18px;background:#fff;color:#132345;border-radius:8px;font-size:13px;font-weight:600}.horizon-original .original-skip-link:focus{top:12px}
+.horizon-original main,.horizon-original button,.horizon-original input,.horizon-original select{font-family:'Inter',Arial,sans-serif}
+.horizon-original h1,.horizon-original h2,.horizon-original h3,.horizon-original h4,.horizon-original h5{font-family:'Manrope','Inter',Arial,sans-serif;letter-spacing:-.035em;font-weight:800;line-height:1.22;text-wrap:balance}
+.horizon-original h1.slide-anim-title,.horizon-original h2.slide-anim-title{font-size:clamp(2.1rem,3.65vw,3.35rem);line-height:1.14;letter-spacing:-.045em}
+.horizon-original .slide-anim-title>span{display:block;color:var(--horizon-accent);margin-top:.08em}
+.horizon-original .slide-anim-text{font-size:15px;line-height:1.85;max-width:57ch;color:#d1dbee}
+.horizon-original .slide-anim-card h3{font-size:clamp(1.45rem,2.2vw,1.9rem);line-height:1.3;letter-spacing:-.035em}
+.horizon-original .slide-anim-card p{font-size:13px;line-height:1.85;color:#c4cfe3}
+.horizon-original #scroll-progress-bar{height:3px;box-shadow:0 0 10px #38bdf833}
+.horizon-original .bg-grid-pattern{opacity:.1}
+.horizon-original .reveal-on-scroll{filter:none;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,1,.36,1)}
+.horizon-original .reveal-on-scroll.revealed{transform:none}
+.horizon-original .glow-card-active{animation:none;border-color:#60a5fa55;box-shadow:0 15px 45px #03081940}
+.horizon-original .animate-float-orb-1,.horizon-original .animate-float-orb-2{animation-duration:18s;opacity:.65}
+.horizon-original .card-hover-effect:hover{transform:translateY(-3px)}
+.horizon-original header{box-shadow:0 4px 18px #03091633}
+.horizon-original header>div:first-child{gap:22px}
+.horizon-original header>div:first-child>a img{height:43px;width:auto;filter:none}
+.horizon-original #desktop-navigation{gap:18px;font-size:11px;letter-spacing:.035em;line-height:1.6}
+.horizon-original #desktop-navigation>a{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;height:44px;padding:0;font:700 11px/1.4 'Inter',Arial,sans-serif;letter-spacing:.035em;text-transform:uppercase;white-space:nowrap;transition:color .2s}
+.horizon-original .header-actions>.desktop-aula,.horizon-original .header-actions>.header-enrollment{display:inline-flex;align-items:center;justify-content:center;min-height:42px;font:700 11px/1.4 'Inter',Arial,sans-serif;letter-spacing:.025em}
+.horizon-original header>div:first-child>div:last-child{flex-shrink:0;gap:10px}
+.horizon-original .mobile-menu-button{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid #34415d;border-radius:10px;background:#142039;color:#dceaff;font-size:10px;font-weight:700;padding:0}
+.horizon-original .mobile-navigation{position:absolute;top:100%;left:0;right:0;max-height:calc(100dvh - 85px);overflow:auto;background:#0d1428;border-bottom:1px solid #314363;padding:14px 24px 20px;box-shadow:0 18px 30px #0005}
+.horizon-original .mobile-navigation[hidden]{display:none}
+.horizon-original .mobile-navigation a{display:block;padding:13px 0;border-bottom:1px solid #ffffff0e;font-size:13px;color:#dae4f5;letter-spacing:0;text-transform:none;font-weight:600}
+.horizon-original #d2-noticias>.relative.z-10{padding-top:36px;padding-bottom:38px}
+.horizon-original #d2-noticias .slide-anim-badge{letter-spacing:.07em;font-size:10px;line-height:1.6}
+.horizon-original #slider-viewport{min-height:440px}
+.horizon-original #slider-pause-btn{min-height:34px;font-size:10px}
+.horizon-original .slider-nav-tab{border-radius:14px;outline-offset:4px}
+.horizon-original .slider-nav-tab.active{background:#ffffff0f;border-color:#7dd3fc66;box-shadow:none}
+.horizon-original .slider-nav-tab .tab-progress{background:linear-gradient(90deg,#2563eb,#7dd3fc);box-shadow:none}
+.horizon-original .slider-nav-tab>div>div>span:last-child{font-size:10px;letter-spacing:.045em}
+.horizon-original .slider-nav-tab>p{font-size:11px;line-height:1.65}
+.horizon-original #d2-solicita-info p,.horizon-original #d2-ciclos p,.horizon-original #d2-ingresantes p,.horizon-original #d2-examen p{font-size:14px;line-height:1.85}
+.horizon-original #d2-solicita-info h4{font-size:25px;line-height:1.3;max-width:21ch;margin-inline:auto}
+.horizon-original #d2-solicita-info .border-dashed{border-style:solid;border-width:1px;border-color:#3b82f640}
+.horizon-original #d2-solicita-info .border-dashed>.relative.py-6{padding-block:10px}
+.horizon-original #d2-solicita-info .border-dashed .text-blue-200\/80{font-size:13px;font-weight:600;color:#9fc6f4;margin-block:10px}
+.horizon-original #original-info-form label{font-size:11px;line-height:1.6}
+.horizon-original #original-info-form input:not([type=hidden]),.horizon-original #original-info-form select{min-height:46px;font-size:14px;line-height:1.5;padding:12px 13px;border-color:#cbd5e1;border-radius:10px}
+.horizon-original #original-info-form input:focus,.horizon-original #original-info-form select:focus{outline:2px solid #2563eb;outline-offset:2px}
+.horizon-original #original-info-form>p{font-size:11px;line-height:1.8}
+.horizon-original #original-info-form .modality-tab-btn{min-height:40px;letter-spacing:0;font-size:12px}
+.horizon-original #original-info-form>div.pt-3{gap:18px;align-items:center}
+.horizon-original #original-info-form>div.pt-3>span{font-family:inherit;font-size:10px;font-weight:500}
+.horizon-original #original-info-form button[type=submit]{font-size:11px;letter-spacing:.035em;min-height:46px;padding-inline:22px;flex-shrink:0}
+.horizon-original #d2-ciclos .grid.md\:grid-cols-3>div{border-radius:22px}
+.horizon-original #d2-ciclos h4{font-size:25px;line-height:1.25}
+.horizon-original #d2-ciclos li{align-items:flex-start;font-size:13px;line-height:1.65}
+.horizon-original #d2-ciclos li svg{margin-top:3px}
+.horizon-original #d2-ciclos .grid.md\:grid-cols-3>div>a{font-size:11px;letter-spacing:.04em}
+.horizon-original #d2-razones h3{max-width:26ch;margin-inline:auto}
+.horizon-original #d2-razones h5{font-size:16px;line-height:1.4;letter-spacing:-.025em}
+.horizon-original #d2-razones p{font-size:13px;line-height:1.85}
+.horizon-original #d2-razones .grid>div>div:last-child{font-family:inherit;font-size:10px;line-height:1.65}
+.horizon-original #d2-ingresantes .flex.items-center.gap-4>div:first-child{flex-shrink:0;font-family:'Manrope',sans-serif;font-size:25px}
+.horizon-original #d2-ingresantes .inline-flex{line-height:1.6}
+.horizon-original #d2-ingresantes .pt-4{flex-wrap:wrap;gap:12px;font-size:11px}
+.horizon-original #d2-examen .lg\:grid-cols-4{gap:20px}
+.horizon-original #d2-examen .lg\:grid-cols-4>div{padding:25px 22px;border-radius:22px}
+.horizon-original #d2-examen .lg\:grid-cols-4 h4{font-size:18px;line-height:1.35}
+.horizon-original #d2-examen .lg\:grid-cols-4 p{font-size:13px;line-height:1.8}
+.horizon-original #d2-examen .lg\:grid-cols-4>div>div:last-child{flex-wrap:wrap;gap:9px;font-family:inherit;font-size:10px;letter-spacing:0}
+.horizon-original #d2-faq p{font-size:14px;line-height:1.9}
+.horizon-original #d2-faq h5{line-height:1.5;letter-spacing:-.015em}
+.horizon-original footer p,.horizon-original footer .grid a{font-size:12px;line-height:1.9}
+.horizon-original footer h4{font-size:14px;letter-spacing:-.015em}
+.horizon-original a,.horizon-original button{touch-action:manipulation}
+.horizon-original :is(a,button,[role=button]):focus-visible{outline:2px solid var(--horizon-focus);outline-offset:5px}
+.horizon-original section[id],.horizon-original #d2-faq{scroll-margin-top:100px}
+.horizon-original #modal-aula[role=dialog]>div>button:first-child{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+.horizon-original .news-slide:not(.active){visibility:hidden}
+@media(min-width:1024px) and (max-width:1199px){.horizon-original #desktop-navigation{display:none}.horizon-original .mobile-menu-button{display:flex}.horizon-original #d2-razones .lg\:grid-cols-5{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1200px){.horizon-original .mobile-navigation{display:none!important}}
+@media(max-width:1023px){.horizon-original .mobile-menu-button{display:flex}.horizon-original header>div:first-child{height:76px}.horizon-original .slide-anim-card{max-width:690px;margin-inline:auto}.horizon-original #slider-viewport{min-height:0}.horizon-original .news-slide{gap:35px}.horizon-original #d2-noticias>.relative.z-10{padding-block:32px}.horizon-original .slide-anim-title{max-width:20ch}.horizon-original .slide-anim-text{max-width:65ch}.horizon-original #d2-razones .grid>div:last-child{grid-column:1/-1}}
+@media(max-width:639px){.horizon-original header>div:first-child{height:70px;gap:10px;padding-inline:18px}.horizon-original header>div:first-child>a img{height:35px;max-width:110px;object-fit:contain}.horizon-original .desktop-aula{display:none}.horizon-original header>div:first-child>div:last-child{gap:8px}.horizon-original header .header-enrollment{font-size:10px;max-width:118px;padding:11px 13px;border-radius:10px;text-align:center}.horizon-original .mobile-menu-button{height:40px;width:40px}.horizon-original .admission-strip{padding:12px 18px}.horizon-original .admission-strip>div{gap:8px}.horizon-original .admission-strip>div>div:last-child{flex-wrap:wrap;justify-content:center;gap:7px 10px;font-size:9px;line-height:1.7}.horizon-original .admission-strip>div>div:first-child>span:last-child{font-size:10px}.horizon-original #d2-noticias>.relative.z-10{padding:26px 20px 30px}.horizon-original #d2-noticias>.relative.z-10>div:first-child{gap:12px;flex-wrap:wrap;padding-bottom:18px;margin-bottom:26px}.horizon-original #d2-noticias>.relative.z-10>div:first-child>div:first-child{gap:8px}.horizon-original #d2-noticias>.relative.z-10>div:first-child>div:first-child>span:last-child{font-size:9px;letter-spacing:.075em}.horizon-original #d2-noticias>.relative.z-10>div:first-child>div:last-child{margin-left:auto;gap:10px}.horizon-original h1.slide-anim-title,.horizon-original h2.slide-anim-title{font-size:clamp(30px,8.5vw,41px);line-height:1.18;letter-spacing:-.04em}.horizon-original .slide-anim-badge{font-size:9px!important;max-width:100%}.horizon-original .slide-anim-text{font-size:14px;line-height:1.85}.horizon-original .slide-anim-card h3{font-size:23px;line-height:1.3}.horizon-original .slide-anim-card>div{padding:24px;border-radius:22px}.horizon-original .slide-anim-card p{font-size:13px}.horizon-original .slide-anim-card .grid{gap:14px;padding:16px;font-size:10px}.horizon-original .slide-anim-card .grid>div:nth-child(2){border-right:0}.horizon-original .slide-anim-card .grid>div>span:last-child{line-height:1.6;display:block;margin-top:3px}.horizon-original #d2-noticias .slide-anim-cta{gap:16px}.horizon-original #d2-noticias .slide-anim-cta>a{font-size:11px;padding:14px 20px}.horizon-original #d2-noticias .slide-anim-cta>span{font:10px/1.7 'Inter',sans-serif}.horizon-original #d2-noticias .pt-8{padding-top:24px;margin-top:24px}.horizon-original .slider-nav-tab{padding:14px}.horizon-original #d2-solicita-info,.horizon-original #d2-ciclos,.horizon-original #d2-razones,.horizon-original #d2-ingresantes,.horizon-original #d2-examen{padding-block:58px}.horizon-original #d2-solicita-info>.max-w-7xl,.horizon-original #d2-ciclos>.max-w-7xl,.horizon-original #d2-razones>.max-w-7xl,.horizon-original #d2-ingresantes>.max-w-7xl,.horizon-original #d2-examen>.max-w-7xl{padding-inline:20px}.horizon-original #d2-solicita-info .p-8{padding:25px}.horizon-original #d2-solicita-info h4{font-size:23px}.horizon-original #d2-solicita-info .grid-cols-2.pt-2{grid-template-columns:1fr}.horizon-original #d2-solicita-info .grid-cols-2.pt-2>div{font-size:12px}.horizon-original #original-info-form>div.pt-3{flex-direction:column-reverse;align-items:stretch;gap:12px}.horizon-original #original-info-form>div.pt-3>span{text-align:center}.horizon-original #original-info-form button[type=submit]{justify-content:center;font-size:11px}.horizon-original #d2-ciclos h3,.horizon-original #d2-razones h3,.horizon-original #d2-ingresantes h3,.horizon-original #d2-examen h3{font-size:29px;line-height:1.25}.horizon-original #d2-ciclos .grid.md\:grid-cols-3{gap:30px}.horizon-original #d2-ciclos .grid.md\:grid-cols-3>div{padding:27px}.horizon-original #d2-razones .grid>div:last-child{grid-column:auto}.horizon-original #d2-razones h5{font-size:18px}.horizon-original #d2-razones p{font-size:14px}.horizon-original #d2-ingresantes .grid.md\:grid-cols-2>div{padding:25px}.horizon-original #d2-ingresantes .flex.items-center.gap-4{gap:13px}.horizon-original #d2-ingresantes h5{font-size:16px}.horizon-original #d2-ingresantes .inline-flex{font-size:10px}.horizon-original #d2-ingresantes .flex.items-center.gap-4>div:first-child{width:58px;height:58px;font-size:23px}.horizon-original #d2-faq .p-6{padding:22px}.horizon-original #d2-faq p{padding-left:0;margin-top:15px}.horizon-original #d2-faq h5{font-size:14px}.horizon-original section[id],.horizon-original #d2-faq{scroll-margin-top:84px}}
+@media(prefers-reduced-motion:reduce){html.scroll-smooth{scroll-behavior:auto!important}.horizon-original *,.horizon-original *:before,.horizon-original *:after{animation:none!important;transition:none!important}.horizon-original .reveal-on-scroll{opacity:1;transform:none;filter:none}.horizon-original .slide-anim-badge,.horizon-original .slide-anim-title,.horizon-original .slide-anim-text,.horizon-original .slide-anim-cta,.horizon-original .slide-anim-card{opacity:1;transform:none}.horizon-original .card-hover-effect:hover{transform:none}}
+
+@media(max-width:639px){.horizon-original #original-info-form input:not([type=hidden]),.horizon-original #original-info-form select{font-size:16px}}
+@media(max-width:359px){.horizon-original header>div:first-child{padding-inline:14px;gap:8px}.horizon-original header>div:first-child>a img{height:30px}.horizon-original header .header-enrollment{max-width:106px;padding-inline:10px}}
+
+@media(max-width:639px){.horizon-original .header-actions>.desktop-aula{display:none}}

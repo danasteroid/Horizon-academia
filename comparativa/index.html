@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Horizon Academia · Cuatro diseños para comparar</title>
+  <link rel="stylesheet" href="comparador.css"><script src="comparador.js?revision=menu-5" defer></script>
+</head>
+<body>
+  <header class="review-header">
+    <a class="review-brand" href="#comparar" aria-label="Volver a los cuatro diseños"><img src="../assets/logo-dark.png" alt="Horizon Academia" width="820" height="295"><span>ESTUDIO DE DISEÑO</span></a>
+    <button class="overview-button" type="button" data-overview>Ver los 4 diseños</button>
+    <a class="open-link" href="../index.html" target="_blank" rel="noopener" id="open-page" hidden>Abrir página completa</a>
+  </header>
+  <main>
+    <section id="overview" aria-labelledby="review-title">
+      <div class="review-intro"><div><p class="label">HORIZON ACADEMIA / ADMISIÓN 2027</p><h1>Cuatro formas de mirar<br>hacia el mismo horizonte.</h1></div><p>El diseño que ya conoces y tres nuevas propuestas.<br>Abre cada una, recórrela y compáralas a tu ritmo.</p></div>
+      <div class="design-grid">
+        <article class="design-card"><button class="preview" data-open="original" aria-label="Explorar diseño 1, original"><img src="capturas/original.png?revision=menu-5" alt="Vista previa del diseño original actualizado con el contenido de Horizon Academia" width="1265" height="712"></button><div class="card-description"><div><p class="label">01 / DISEÑO ORIGINAL</p><h2>Original</h2><p>El diseño original, pulido en azul y con el contenido del Word.</p></div><button class="explore" data-open="original">Explorar<span class="sr-only"> original</span></button></div></article>
+        <article class="design-card"><button class="preview" data-open="institucional" aria-label="Explorar diseño 2, institucional"><img src="capturas/institucional.png" alt="Vista previa de la alternativa institucional, blanca y azul marino" width="1265" height="712"></button><div class="card-description"><div><p class="label">02 / CLARIDAD Y CONFIANZA</p><h2>Institucional</h2><p>Blanco, azul y una presencia académica sobria.</p></div><button class="explore" data-open="institucional">Explorar<span class="sr-only"> institucional</span></button></div></article>
+        <article class="design-card"><button class="preview" data-open="editorial" aria-label="Explorar diseño 3, editorial"><img src="capturas/editorial.png" alt="Vista previa de la alternativa editorial, en papel cálido y tipografía con serifas" width="1265" height="712"></button><div class="card-description"><div><p class="label">03 / VOCACIÓN Y CARÁCTER</p><h2>Editorial</h2><p>Un cuaderno académico con una voz más humana.</p></div><button class="explore" data-open="editorial">Explorar<span class="sr-only"> editorial</span></button></div></article>
+        <article class="design-card"><button class="preview" data-open="esencial" aria-label="Explorar diseño 4, Horizon esencial"><img src="capturas/esencial.png" alt="Vista previa de Horizon esencial, en azul profundo con acentos dorados" width="1265" height="712"></button><div class="card-description"><div><p class="label">04 / EVOLUCIÓN DE LA IDENTIDAD</p><h2>Horizon esencial</h2><p>La fuerza del diseño actual, con mayor orden y calma.</p></div><button class="explore" data-open="esencial">Explorar<span class="sr-only"> Horizon esencial</span></button></div></article>
+      </div>
+      <div class="review-note"><p>Los cuatro diseños son páginas navegables en HTML. Puedes probar el menú, los ciclos, las preguntas y la consulta por WhatsApp.</p><p>El original y las tres alternativas incorporan el contenido adaptado del documento de la academia.</p></div>
+    </section>
+    <section id="viewer" hidden aria-label="Explorar los diseños">
+      <div class="viewer-toolbar"><nav aria-label="Seleccionar diseño"><button data-open="original">1. Original</button><button data-open="institucional">2. Institucional</button><button data-open="editorial">3. Editorial</button><button data-open="esencial">4. Esencial</button></nav><div class="device-controls" aria-label="Ancho de vista"><button data-device="desktop" aria-pressed="true">Computadora</button><button data-device="mobile" aria-pressed="false">Celular</button></div></div>
+      <div class="viewer-status" aria-live="polite"><span id="design-description"></span><span id="device-description">Página real · Vista de computadora</span></div>
+      <div class="frame-stage"><iframe title="Diseño seleccionado de Horizon Academia" id="design-frame" src="about:blank"></iframe></div>
+    </section>
+  </main>
+</body>
+</html>
