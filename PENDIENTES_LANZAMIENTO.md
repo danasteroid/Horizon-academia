@@ -19,7 +19,7 @@ La versión técnica conserva el diseño original y el contenido actual. **El cl
 - [x] Mantener contenido legible sin JavaScript y respetar movimiento reducido.
 - [x] Documentar edición, compilación, publicación y reversión.
 
-Validación local de esta entrega: 47 archivos públicos y 57 referencias locales comprobadas; menú revisado a 320, 390, 768 y 1280 píxeles; consulta y diálogo probados sin enviar mensajes. Quedan pendientes las pruebas de atención y dispositivos físicos indicadas más adelante.
+Validación local de esta entrega: 46 archivos públicos y 57 referencias locales comprobadas; menú revisado a 320, 390, 768 y 1280 píxeles; consulta y diálogo probados sin enviar mensajes. Quedan pendientes las pruebas de atención y dispositivos físicos indicadas más adelante.
 
 ## 2. Contenido que debe aprobar el cliente
 

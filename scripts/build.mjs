@@ -14,7 +14,7 @@ if (path.dirname(dist) !== root || path.basename(dist) !== 'dist') throw new Err
 await rm(dist, { recursive: true, force: true });
 await mkdir(path.join(dist, 'assets', 'fonts'), { recursive: true });
 await mkdir(path.join(dist, 'licenses'), { recursive: true });
-const read = file => readFile(path.join(root, file), 'utf8');
+const read = async file => (await readFile(path.join(root, file), 'utf8')).replace(/\r\n/g, '\n');
 const config = JSON.parse(await read('site.config.json'));
 const site = new URL(process.env.SITE_URL || config.url);
 if (site.protocol !== 'https:' || site.search || site.hash || site.username || site.password) throw new Error('SITE_URL debe ser una URL HTTPS sin credenciales ni parámetros');
@@ -142,10 +142,9 @@ for (const file of pages) {
 await writeFile(path.join(dist, '404.html'), `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Página no encontrada · Horizon Academia</title><link rel="icon" href="${site.pathname}favicon.svg"><style>body{margin:0;background:#080c16;color:#e2e8f0;font:17px/1.7 system-ui,sans-serif;display:grid;place-items:center;min-height:100svh}main{max-width:35rem;padding:32px}h1{font-size:2.2rem;line-height:1.2}a{color:#7dd3fc}a:focus-visible{outline:3px solid #38bdf8;outline-offset:5px}</style></head><body><main><p>HORIZON ACADEMIA · 404</p><h1>No encontramos esta página.</h1><p>El enlace puede haber cambiado. Puedes volver al inicio o consultar con el equipo de la academia.</p><p><a href="${site.pathname}">Volver a la página principal</a></p><p><a href="https://wa.me/51989949451" rel="noopener noreferrer">Consultar por WhatsApp</a></p></main></body></html>`);
 await writeFile(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${new URL('sitemap.xml', site).href}\n`);
 await writeFile(path.join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${site.href}</loc></url></urlset>\n`);
-await writeFile(path.join(dist, '.nojekyll'), '');
 const files = await readdir(dist, { recursive: true });
 const fileHashes = [];
-for (const file of [...files].sort()) {
+for (const file of files.map(file => file.replaceAll('\\', '/')).sort()) {
   const absolute = path.join(dist, file);
   if ((await stat(absolute)).isFile()) fileHashes.push([file.replaceAll('\\', '/'), hash(await readFile(absolute))]);
 }
