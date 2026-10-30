@@ -1,0 +1,23 @@
+{
+  "name": "horizon-academia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web institucional de Horizon Academia",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "preview": "node scripts/preview.mjs",
+    "verify": "npm run build && npm run check"
+  },
+  "devDependencies": {
+    "@fontsource-variable/dm-sans": "5.3.0",
+    "@fontsource-variable/inter": "5.3.0",
+    "@fontsource-variable/manrope": "5.3.0",
+    "@fontsource-variable/newsreader": "5.3.0",
+    "esbuild": "0.28.2",
+    "lucide": "1.64.0",
+    "postcss": "8.5.32",
+    "tailwindcss": "3.4.17"
+  }
+}

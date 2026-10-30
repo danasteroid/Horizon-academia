@@ -84,3 +84,7 @@
 @media(max-width:359px){.horizon-original header>div:first-child{padding-inline:14px;gap:8px}.horizon-original header>div:first-child>a img{height:30px}.horizon-original header .header-enrollment{max-width:106px;padding-inline:10px}}
 
 @media(max-width:639px){.horizon-original .header-actions>.desktop-aula{display:none}}
+
+/* El contenido sigue visible si JavaScript falla o está desactivado. */
+.horizon-original .reveal-on-scroll:not(.reveal-ready){transform:none;filter:none}
+.horizon-original button:disabled{cursor:wait;opacity:.6}

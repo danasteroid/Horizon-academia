@@ -1,0 +1,166 @@
+/* Tipografía y Base */
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-d1 { font-family: 'Manrope', sans-serif; }
+    .font-d2 { font-family: 'Inter', sans-serif; }
+    .font-d3 { font-family: 'Manrope', sans-serif; }
+
+    /* Barra de progreso de lectura / scroll superior */
+    #scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3.5px;
+      width: 0%;
+      background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 4px rgba(37, 99, 235, 0.35);
+      z-index: 100;
+      transition: width 0.1s ease-out;
+      pointer-events: none;
+    }
+
+    /* Animaciones de entrada al hacer scroll */
+    .reveal-on-scroll {
+      opacity: 1;
+      transform: translateY(30px);
+      filter: blur(3px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
+    }
+    .reveal-on-scroll.reveal-ready { opacity: 0; }
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0) translateX(0) scale(1);
+      filter: blur(0);
+    }
+    .reveal-left { transform: translateX(-35px); }
+    .reveal-right { transform: translateX(35px); }
+    .reveal-scale { transform: scale(0.94); }
+
+    .delay-100 { transition-delay: 100ms; }
+    .delay-150 { transition-delay: 150ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-250 { transition-delay: 250ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+
+    /* Micro-elevaciones y sombras */
+    .card-hover-effect {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+    .card-hover-effect:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Patrón de cuadrícula / malla decorativa */
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* Orbes flotantes animados en el fondo del slider */
+    @keyframes floatOrb1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -25px) scale(1.1); }
+    }
+    @keyframes floatOrb2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-30px, 25px) scale(0.92); }
+    }
+    .animate-float-orb-1 { animation: floatOrb1 9s ease-in-out infinite; }
+    .animate-float-orb-2 { animation: floatOrb2 11s ease-in-out infinite; }
+
+    /* ========================================================= */
+    /* ESTILOS DINÁMICOS PARA EL SLIDER DE NOTICIAS (PARTE 1)    */
+    /* ========================================================= */
+    .news-slide {
+      display: none;
+      opacity: 0;
+      transform: translateY(16px) scale(0.985);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      width: 100%;
+    }
+    .news-slide.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    /* Animaciones escalonadas de entrada de elementos dentro del slide activo */
+    .news-slide.active .slide-anim-badge {
+      animation: slideInChild 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+    }
+    .news-slide.active .slide-anim-title {
+      animation: slideInChild 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+    }
+    .news-slide.active .slide-anim-text {
+      animation: slideInChild 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both;
+    }
+    .news-slide.active .slide-anim-cta {
+      animation: slideInChild 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+    }
+    .news-slide.active .slide-anim-card {
+      animation: slideCardIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    }
+
+    @keyframes slideInChild {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Pestañas de navegación con barra de progreso dinámico */
+    .slider-nav-tab {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .slider-nav-tab .tab-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #60a5fa, #38bdf8);
+      border-radius: 9999px;
+      transition: width 0.08s linear;
+    }
+    .slider-nav-tab.active {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .slider-nav-tab.active .tab-progress {
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+    }
+
+    /* Efecto de borde brillante que respira en la tarjeta del slide */
+    @keyframes glowPulse {
+      0%, 100% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 25px rgba(99, 102, 241, 0.15); }
+      50% { border-color: rgba(56, 189, 248, 0.6); box-shadow: 0 0 35px rgba(56, 189, 248, 0.25); }
+    }
+    .glow-card-active {
+      animation: glowPulse 4s infinite ease-in-out;
+    }

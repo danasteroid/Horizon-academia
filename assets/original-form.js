@@ -1,0 +1,25 @@
+const originalForm = document.getElementById('original-info-form');
+    originalForm.querySelector('button[type="submit"]').disabled = false;
+    const nameFields = ['original-name', 'original-surname'].map(id => document.getElementById(id));
+    nameFields.forEach(field => field.addEventListener('input', () => field.setCustomValidity('')));
+    originalForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const data = new FormData(originalForm);
+      const name = String(data.get('name') || '').trim();
+      const surname = String(data.get('surname') || '').trim();
+      nameFields.forEach(field => field.setCustomValidity(field.value.trim() ? '' : 'Escribe este dato para preparar tu consulta.'));
+      if (!originalForm.reportValidity()) return;
+      let message = `Hola, Horizon Academia. Soy ${name} ${surname}. Me interesa la preparación para admisión 2027 al Pedagógico de Huaraz. Ciclo: ${data.get('cycle')}. Modalidad: ${document.getElementById('selected-modality-input').value}.`;
+      const email = String(data.get('email') || '').trim();
+      const phone = String(data.get('phone') || '').trim();
+      if (email) message += ` Mi correo: ${email}.`;
+      if (phone) message += ` Mi celular: ${phone}.`;
+      message += ' ¿Podrían informarme sobre horarios, precios y matrícula?';
+      document.getElementById('original-message').textContent = message;
+      document.getElementById('original-whatsapp').href = 'https://wa.me/51989949451?text=' + encodeURIComponent(message);
+      document.getElementById('original-consultation').hidden = false;
+      document.getElementById('original-whatsapp').focus({preventScroll: true});
+      document.getElementById('original-consultation').scrollIntoView({block: 'nearest', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+    });
+    originalForm.addEventListener('input', () => document.getElementById('original-consultation').hidden = true);
+    document.getElementById('form-modality-tabs').addEventListener('click', () => document.getElementById('original-consultation').hidden = true);
