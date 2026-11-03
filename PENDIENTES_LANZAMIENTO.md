@@ -1,8 +1,8 @@
 # Horizon Academia — pendientes para la reunión y el lanzamiento
 
-Fecha: 29 de octubre de 2026.
+Última actualización: 3 de noviembre de 2026.
 
-La versión técnica conserva el diseño original y el contenido actual. **El cliente todavía debe aprobar el contenido y las condiciones de la academia.** Esta lista no presupone que la web gestione matrículas o pagos.
+La versión técnica conserva el diseño original. El usuario informa que el contenido está actualizado; se incorporaron la misión y la visión facilitadas por el cliente el 3 de noviembre de 2026. Los puntos siguientes sirven como comprobación de salida y no implican que se haya detectado un dato incorrecto. Esta lista no presupone que la web gestione matrículas o pagos.
 
 ## 1. Base técnica preparada
 
@@ -19,10 +19,11 @@ La versión técnica conserva el diseño original y el contenido actual. **El cl
 - [x] Mantener contenido legible sin JavaScript y respetar movimiento reducido.
 - [x] Documentar edición, compilación, publicación y reversión.
 
-Validación local de esta entrega: 46 archivos públicos y 57 referencias locales comprobadas; menú revisado a 320, 390, 768 y 1280 píxeles; consulta y diálogo probados sin enviar mensajes. Quedan pendientes las pruebas de atención y dispositivos físicos indicadas más adelante.
+Validación local de esta entrega: 46 archivos públicos y 58 referencias locales comprobadas; menú revisado a 320, 390, 768 y 1280 píxeles; consulta y diálogo probados sin enviar mensajes. Quedan pendientes las pruebas de atención y dispositivos físicos indicadas más adelante.
 
 ## 2. Contenido que debe aprobar el cliente
 
+- [x] Incorporar la misión y la visión proporcionadas por el cliente, incluida la visión para 2030.
 - [ ] Nombre comercial y forma exacta de escribir Horizon Academia.
 - [ ] Nombre del instituto y cómo describir la relación con él; no sugerir afiliación oficial si no existe.
 - [ ] Campaña 2027, inicio del lunes 11 de enero de 2027 y disponibilidad real de vacantes.

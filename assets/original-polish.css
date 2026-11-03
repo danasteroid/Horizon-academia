@@ -88,3 +88,22 @@
 /* El contenido sigue visible si JavaScript falla o está desactivado. */
 .horizon-original .reveal-on-scroll:not(.reveal-ready){transform:none;filter:none}
 .horizon-original button:disabled{cursor:wait;opacity:.6}
+
+/* Misión y visión: lectura institucional dentro de la sección de la academia. */
+.horizon-original .academy-purpose{margin-top:64px;padding-top:40px;border-top:1px solid #dce4ef}
+.horizon-original #d2-proposito .purpose-heading{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:36px}
+.horizon-original #d2-proposito .purpose-eyebrow{margin:0;color:#1d4ed8;font-size:10px;font-weight:700;line-height:1.6;letter-spacing:.12em;text-transform:uppercase}
+.horizon-original #d2-proposito .purpose-heading h3{margin:0;color:#0f172a;font-size:30px;line-height:1.2}
+.horizon-original #d2-proposito .purpose-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+.horizon-original #d2-proposito .purpose-statement+article{padding-left:40px;border-left:1px solid #dce4ef}
+.horizon-original #d2-proposito .purpose-statement h4{margin:12px 0 18px;color:#0f172a;font-size:26px;line-height:1.2}
+.horizon-original #d2-proposito .purpose-copy{margin:0;max-width:64ch;color:#475569;font-size:15px;line-height:1.9;overflow-wrap:break-word}
+@media(max-width:767px){
+  .horizon-original .academy-purpose{margin-top:44px;padding-top:32px}
+  .horizon-original #d2-proposito .purpose-heading{display:block;margin-bottom:30px}
+  .horizon-original #d2-proposito .purpose-heading h3{margin-top:10px;font-size:26px}
+  .horizon-original #d2-proposito .purpose-grid{grid-template-columns:1fr;gap:28px}
+  .horizon-original #d2-proposito .purpose-statement+article{padding:28px 0 0;border-left:0;border-top:1px solid #dce4ef}
+  .horizon-original #d2-proposito .purpose-statement h4{font-size:24px;margin-bottom:14px}
+  .horizon-original #d2-proposito .purpose-copy{font-size:14px;line-height:1.85}
+}
