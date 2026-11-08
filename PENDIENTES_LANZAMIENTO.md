@@ -19,7 +19,7 @@ La versión técnica conserva el diseño original. El 8 de noviembre de 2026 el 
 - [x] Mantener contenido legible sin JavaScript y respetar movimiento reducido.
 - [x] Documentar edición, compilación, publicación y reversión.
 
-Validación local de esta entrega: 46 archivos públicos y 58 referencias locales comprobadas; menú revisado a 320, 390, 768 y 1280 píxeles; consulta y diálogo probados sin enviar mensajes. Quedan pendientes las pruebas de atención y dispositivos físicos indicadas más adelante.
+Validación local de esta entrega: 55 archivos públicos y 70 referencias locales comprobadas; menú revisado a 320, 390, 768 y 1280 píxeles; consulta y diálogo probados sin enviar mensajes. Quedan pendientes las pruebas de atención y dispositivos físicos indicadas más adelante.
 
 ## 2. Contenido confirmado por el cliente
 
@@ -55,7 +55,9 @@ Validación local de esta entrega: 46 archivos públicos y 58 referencias locale
 - [ ] Entregar URL y funcionamiento del aula virtual. El botón actual informa y deriva al equipo.
 - [ ] Entregar logo original, preferiblemente vectorial; aprobar icono y logo usado al compartir el enlace.
 - [ ] Recibir las tres imágenes que proporcionará el cliente para los slides de admisión, simulacros y materiales/entrevista.
-- [ ] Elegir su ubicación visual, comprobar recortes en computadora y celular e integrarlas.
+- [x] Elegir la opción 3: fotografía integrada en el fondo de los tres slides.
+- [x] Integrar tres fotografías referenciales generadas y rotuladas, con recortes adaptables y versiones WebP optimizadas.
+- [ ] Sustituir las fotografías referenciales por los originales del cliente y comprobar sus nuevos encuadres.
 - [ ] Si se amplía la galería: fotografías reales de sede, clases y equipo, con autorización de publicación.
 - [ ] Si habrá testimonios o ingresantes: textos auténticos, resultados verificables y permisos para nombres, fotos y datos; atender especialmente los de menores.
 - [ ] Si habrá descargas: materiales finales, derechos de uso y revisión para evitar datos personales.
@@ -108,8 +110,8 @@ Validación local de esta entrega: 46 archivos públicos y 58 referencias locale
 
 ## Siguientes pasos acordados
 
-1. Elegir la composición de las imágenes de los tres slides y recibir los archivos del cliente.
-2. Integrar y optimizar esas imágenes, revisar computadora/celular y publicar la actualización en el enlace actual de GitHub Pages.
+1. Composición elegida e integrada: fotografía de fondo. Recibir ahora los archivos originales del cliente.
+2. La integración referencial ya dispone de optimización y ajustes de computadora/celular; cuando lleguen las fotos reales, sustituirlas y actualizar la publicación en GitHub Pages.
 3. Explicar y, cuando haya acceso de la academia, configurar su presencia en Google: Search Console para la web y Perfil de Empresa para Maps.
 4. Probar una consulta real al número ya confirmado y acordar el responsable de respuesta.
 5. Elegir y conectar el dominio propio al final, cuando el cliente decida el nombre y la contratación.

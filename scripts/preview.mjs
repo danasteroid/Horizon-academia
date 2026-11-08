@@ -7,7 +7,7 @@ const dist = path.join(root, 'dist');
 const config = JSON.parse(await readFile(path.join(root, 'site.config.json'), 'utf8'));
 const base = new URL(process.env.SITE_URL || config.url).pathname.replace(/\/?$/, '/');
 const port = Number(process.env.PORT || 4174);
-const types = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.json':'application/json', '.svg':'image/svg+xml', '.png':'image/png', '.jpg':'image/jpeg', '.woff2':'font/woff2', '.xml':'application/xml', '.txt':'text/plain; charset=utf-8' };
+const types = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.json':'application/json', '.svg':'image/svg+xml', '.png':'image/png', '.jpg':'image/jpeg', '.webp':'image/webp', '.woff2':'font/woff2', '.xml':'application/xml', '.txt':'text/plain; charset=utf-8' };
 http.createServer(async (req, res) => {
   try {
     const pathname = decodeURIComponent(new URL(req.url, `http://127.0.0.1:${port}`).pathname);

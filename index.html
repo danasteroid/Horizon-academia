@@ -125,9 +125,13 @@
         <div id="slider-viewport" class="relative min-h-[460px] sm:min-h-[420px] flex items-center">
           
           <!-- SLIDE 1: Convocatoria Admisión 2027 -->
-          <div class="news-slide active w-full flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12" data-slide="0">
+          <div class="photo-slide news-slide active w-full flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12" data-slide="0">
+            <div class="slide-photo" aria-hidden="true">
+              <img src="assets/slides/admision-1600.webp" srcset="assets/slides/admision-640.webp 640w, assets/slides/admision-1024.webp 1024w, assets/slides/admision-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" decoding="async" fetchpriority="high">
+            </div>
+            <span class="slide-photo-credit">Fotografía referencial</span>
             <!-- Columna Izquierda del Slide -->
-            <div class="lg:w-1/2 space-y-5 text-left">
+            <div class="slide-copy lg:w-1/2 space-y-5 text-left">
               <div class="slide-anim-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-sky-300 border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-sm">
                 <i data-lucide="megaphone" class="w-3.5 h-3.5 text-sky-400"></i>
                 <span>Convocatoria Horizon • Admisión 2027</span>
@@ -148,57 +152,23 @@
                 </span>
               </div>
             </div>
-
-            <!-- Columna Derecha del Slide: Tarjeta Dinámica Estilo Imagen 1 -->
-            <div class="slide-anim-card lg:w-1/2 w-full">
-              <div class="relative bg-gradient-to-br from-[#0c0d24]/95 via-[#131938]/95 to-[#16204d]/95 border border-indigo-400/40 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md overflow-hidden glow-card-active group">
-                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-sky-400/15 rounded-full blur-2xl group-hover:bg-sky-400/25 transition-all"></div>
-                <div class="absolute -top-10 -left-10 w-36 h-36 bg-blue-500/15 rounded-full blur-2xl"></div>
-
-                <div class="flex items-center justify-between border-b border-indigo-400/20 pb-4 mb-5 relative z-10">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
-                    <span class="text-xs font-black uppercase tracking-widest text-blue-300">Admisión Horizon</span>
-                  </div>
-                  <span class="bg-sky-400 text-slate-950 font-black text-[10px] px-3 py-1 rounded-full uppercase shadow-sm">Vacantes 2027</span>
-                </div>
-
-                <div class="space-y-3 mb-6 relative z-10">
-                  <div class="text-xs uppercase tracking-wider text-slate-300 font-bold flex items-center gap-2">
-                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-sky-400"></i>
-                    <span>Horizon Academia · Pedagógico de Huaraz</span>
-                  </div>
-                  <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight">PREPARACIÓN INTEGRAL PARA <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-sky-200 to-sky-300">EL EXAMEN Y LA ENTREVISTA</span></h3>
-                  <!-- TEXTO SOLICITADO -->
-                  <p class="text-xs text-slate-300 leading-relaxed">Estudia con método y estrategia. Fortalece tus conocimientos y practica cómo comunicar tus ideas para llegar con más confianza a la admisión.</p>
-                </div>
-
-                <!-- Bloque de Fechas y Datos Clave como en Imagen 1 -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-black/50 border border-indigo-500/30 p-4 rounded-2xl text-[11px] font-mono relative z-10">
-                  <div class="border-r border-indigo-900/60 pr-2">
-                    <span class="text-slate-400 block text-[9px] uppercase">Ciclo</span>
-                    <span class="text-white font-black">2027</span>
-                  </div>
-                  <div class="border-r border-indigo-900/60 pr-2">
-                    <span class="text-slate-400 block text-[9px] uppercase">Inicio de clases</span>
-                    <span class="text-sky-400 font-black">11 ENE 2027</span>
-                  </div>
-                  <div class="border-r border-indigo-900/60 pr-2">
-                    <span class="text-slate-400 block text-[9px] uppercase">Turnos</span>
-                    <span class="text-white font-black">MAÑANA / TARDE</span>
-                  </div>
-                  <div>
-                    <span class="text-slate-400 block text-[9px] uppercase">Modalidades</span>
-                    <span class="text-cyan-300 font-black">PRES. / DIST.</span>
-                  </div>
-                </div>
-              </div>
+            <div class="slide-details slide-anim-card">
+              <dl class="slide-facts">
+                  <div><dt>Inicio de clases</dt><dd>11 ENE 2027</dd></div>
+                  <div><dt>Turnos</dt><dd>MAÑANA / TARDE</dd></div>
+                  <div><dt>Modalidades</dt><dd>PRESENCIAL / A DISTANCIA</dd></div>
+              </dl>
+              <p class="slide-context">Estudia con método y estrategia. Fortalece tus conocimientos y practica cómo comunicar tus ideas para llegar con más confianza a la admisión.</p>
             </div>
           </div>
 
           <!-- SLIDE 2: Gran Simulacro Presencial y Virtual -->
-          <div class="news-slide w-full flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12" data-slide="1">
-            <div class="lg:w-1/2 space-y-5 text-left">
+          <div class="photo-slide news-slide w-full flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12" data-slide="1">
+            <div class="slide-photo" aria-hidden="true">
+              <img src="assets/slides/simulacros-1600.webp" srcset="assets/slides/simulacros-640.webp 640w, assets/slides/simulacros-1024.webp 1024w, assets/slides/simulacros-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" decoding="async" fetchpriority="low">
+            </div>
+            <span class="slide-photo-credit">Fotografía referencial</span>
+            <div class="slide-copy lg:w-1/2 space-y-5 text-left">
               <div class="slide-anim-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-cyan-300 border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-sm">
                 <i data-lucide="target" class="w-3.5 h-3.5 text-cyan-400"></i>
                 <span>Práctica de admisión</span>
@@ -220,54 +190,24 @@
               </div>
             </div>
 
-            <div class="slide-anim-card lg:w-1/2 w-full">
-              <div class="relative bg-gradient-to-br from-[#0c0d24]/95 via-[#0e1e3b]/95 to-[#102d4f]/95 border border-cyan-400/40 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md overflow-hidden group">
-                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-cyan-400/15 rounded-full blur-2xl group-hover:bg-cyan-400/25 transition-all"></div>
-                <div class="absolute -top-10 -left-10 w-36 h-36 bg-blue-500/15 rounded-full blur-2xl"></div>
-
-                <div class="flex items-center justify-between border-b border-cyan-400/20 pb-4 mb-5 relative z-10">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-                    <span class="text-xs font-black uppercase tracking-widest text-cyan-300">Entrena para la admisión</span>
-                  </div>
-                  <span class="bg-cyan-400 text-slate-950 font-black text-[10px] px-3 py-1 rounded-full uppercase shadow-sm">Conoce tu avance</span>
-                </div>
-
-                <div class="space-y-3 mb-6 relative z-10">
-                  <div class="text-xs uppercase tracking-wider text-slate-300 font-bold flex items-center gap-2">
-                    <i data-lucide="trending-up" class="w-3.5 h-3.5 text-cyan-400"></i>
-                    <span>Entrena antes del examen de admisión</span>
-                  </div>
-                  <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight">SIMULACROS DE ADMISIÓN AL PEDAGÓGICO</h3>
-                  <!-- TEXTO SOLICITADO -->
-                  <p class="text-xs text-slate-300 leading-relaxed">Nuestra preparación incluye simulacros de conocimientos y de entrevista personal. Consulta la próxima fecha y las condiciones de participación.</p>
-                </div>
-
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-black/50 border border-cyan-500/30 p-4 rounded-2xl text-[11px] font-mono relative z-10">
-                  <div class="border-r border-indigo-900/60 pr-2">
-                    <span class="text-slate-400 block text-[9px] uppercase">Formato</span>
-                    <span class="text-white font-black">50 PREGUNTAS</span>
-                  </div>
-                  <div class="border-r border-indigo-900/60 pr-2">
-                    <span class="text-slate-400 block text-[9px] uppercase">Duración</span>
-                    <span class="text-cyan-300 font-black">1 H 30 MIN</span>
-                  </div>
-                  <div class="border-r border-indigo-900/60 pr-2">
-                    <span class="text-slate-400 block text-[9px] uppercase">Preparación</span>
-                    <span class="text-white font-black">ENTREVISTA</span>
-                  </div>
-                  <div>
-                    <span class="text-slate-400 block text-[9px] uppercase">Seguimiento</span>
-                    <span class="text-sky-400 font-black">RANKING</span>
-                  </div>
-                </div>
-              </div>
+            <div class="slide-details slide-anim-card">
+              <dl class="slide-facts slide-facts-four">
+                  <div><dt>Formato</dt><dd>50 PREGUNTAS</dd></div>
+                  <div><dt>Duración</dt><dd>1 H 30 MIN</dd></div>
+                  <div><dt>Preparación</dt><dd>ENTREVISTA</dd></div>
+                  <div><dt>Seguimiento</dt><dd>RANKING</dd></div>
+              </dl>
+              <p class="slide-context">Nuestra preparación incluye simulacros de conocimientos y de entrevista personal. Consulta la próxima fecha y las condiciones de participación.</p>
             </div>
           </div>
 
           <!-- SLIDE 3: Banco de Preguntas Resueltas & Balotarios -->
-          <div class="news-slide w-full flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12" data-slide="2">
-            <div class="lg:w-1/2 space-y-5 text-left">
+          <div class="photo-slide news-slide w-full flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12" data-slide="2">
+            <div class="slide-photo" aria-hidden="true">
+              <img src="assets/slides/materiales-1600.webp" srcset="assets/slides/materiales-640.webp 640w, assets/slides/materiales-1024.webp 1024w, assets/slides/materiales-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" decoding="async" fetchpriority="low">
+            </div>
+            <span class="slide-photo-credit">Fotografía referencial</span>
+            <div class="slide-copy lg:w-1/2 space-y-5 text-left">
               <div class="slide-anim-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-emerald-300 border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-sm">
                 <i data-lucide="book-open" class="w-3.5 h-3.5 text-emerald-400"></i>
                 <span>Recursos Académicos Oficiales</span>
@@ -289,50 +229,14 @@
               </div>
             </div>
 
-            <div class="slide-anim-card lg:w-1/2 w-full">
-              <div class="relative bg-gradient-to-br from-[#0c0d24]/95 via-[#0c232c]/95 to-[#0b382d]/95 border border-emerald-400/40 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md overflow-hidden group">
-                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-emerald-400/15 rounded-full blur-2xl group-hover:bg-emerald-400/25 transition-all"></div>
-                <div class="absolute -top-10 -left-10 w-36 h-36 bg-cyan-500/15 rounded-full blur-2xl"></div>
-
-                <div class="flex items-center justify-between border-b border-emerald-400/20 pb-4 mb-5 relative z-10">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span class="text-xs font-black uppercase tracking-widest text-emerald-300">Material de Estudio</span>
-                  </div>
-                  <span class="bg-emerald-400 text-slate-950 font-black text-[10px] px-3 py-1 rounded-full uppercase shadow-sm">Admisión 2027</span>
-                </div>
-
-                <div class="space-y-3 mb-6 relative z-10">
-                  <div class="text-xs uppercase tracking-wider text-slate-300 font-bold flex items-center gap-2">
-                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i>
-                    <span>Recursos para el examen y la entrevista</span>
-                  </div>
-                  <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight">
-                    BANCO DE PREGUNTAS <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-white">TIPO INSTITUTO</span>
-                  </h3>
-                  <!-- TEXTO SOLICITADO -->
-                  <p class="text-xs text-slate-300 leading-relaxed">Trabajamos con exámenes anteriores y práctica guiada. Consulta los materiales y el acceso a la plataforma incluidos en cada ciclo.</p>
-                </div>
-
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-black/50 border border-emerald-500/30 p-4 rounded-2xl text-[11px] font-mono relative z-10">
-                  <div class="border-r border-indigo-900/60 pr-2">
-                    <span class="text-slate-400 block text-[9px] uppercase">Preguntas</span>
-                    <span class="text-white font-black">EXÁMENES PASADOS</span>
-                  </div>
-                  <div class="border-r border-indigo-900/60 pr-2">
-                    <span class="text-slate-400 block text-[9px] uppercase">Material</span>
-                    <span class="text-emerald-300 font-black">TEÓRICO / PRÁCTICO</span>
-                  </div>
-                  <div class="border-r border-indigo-900/60 pr-2">
-                    <span class="text-slate-400 block text-[9px] uppercase">Entrevista</span>
-                    <span class="text-white font-black">PRÁCTICAS</span>
-                  </div>
-                  <div>
-                    <span class="text-slate-400 block text-[9px] uppercase">Plataforma</span>
-                    <span class="text-cyan-300 font-black">SEGÚN CICLO</span>
-                  </div>
-                </div>
-              </div>
+            <div class="slide-details slide-anim-card">
+              <dl class="slide-facts slide-facts-four">
+                  <div><dt>Preguntas</dt><dd>EXÁMENES PASADOS</dd></div>
+                  <div><dt>Material</dt><dd>TEÓRICO / PRÁCTICO</dd></div>
+                  <div><dt>Entrevista</dt><dd>PRÁCTICAS</dd></div>
+                  <div><dt>Plataforma</dt><dd>SEGÚN CICLO</dd></div>
+              </dl>
+              <p class="slide-context">Trabajamos con exámenes anteriores y práctica guiada. Consulta los materiales y el acceso a la plataforma incluidos en cada ciclo.</p>
             </div>
           </div>
 

@@ -43,6 +43,16 @@ for (const file of files) {
     if (url.hash && target === file && !route) assert(ids.includes(decodeURIComponent(url.hash.slice(1))), `Ancla ausente en ${file}: ${reference}`);
     references++;
   }
+  for (const match of html.matchAll(/\bsrcset="([^"]+)"/g)) {
+    for (const candidate of match[1].split(',')) {
+      const reference = candidate.trim().split(/\s+/)[0];
+      const url = new URL(reference, new URL(file, base));
+      assert.equal(url.origin, base.origin, 'La imagen adaptable debe ser local');
+      assert(url.pathname.startsWith(base.pathname), 'Imagen fuera de la ruta de publicación');
+      assert(exists(decodeURIComponent(url.pathname.slice(base.pathname.length))), `Imagen adaptable ausente: ${reference}`);
+      references++;
+    }
+  }
   if (file === 'index.html') {
     assert(html.includes(`<link rel="canonical" href="${base.href}">`), 'URL canónica incorrecta');
     assert(html.includes('property="og:image"'), 'Falta vista previa social');
@@ -59,4 +69,8 @@ for (const extension of ['css', 'js']) {
   weights[extension] = Math.round(bytes / 1024 * 10) / 10;
 }
 assert(weights.css < 50 && weights.js < 60, 'Los recursos principales superan el presupuesto de carga');
+let imageBytes = 0;
+for (const file of files.filter(file => file.startsWith('assets/slides/') && file.endsWith('.webp'))) imageBytes += (await stat(path.join(root, file))).size;
+assert(imageBytes < 900 * 1024, 'Las imágenes de los slides superan el presupuesto de 900 KB');
 console.log(`Validación correcta: ${files.length} archivos públicos y ${references} referencias locales.\nRecursos principales comprimidos: CSS ${weights.css} KB; JavaScript ${weights.js} KB.\nSintaxis, fuentes, rutas, anclas y metadatos correctos.`);
+console.log(`Fotografías adaptables: ${Math.round(imageBytes / 1024)} KB en total.`);

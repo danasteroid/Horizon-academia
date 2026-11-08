@@ -6,6 +6,7 @@ import { createRequire } from 'node:module';
 import { build, transform } from 'esbuild';
 import postcss from 'postcss';
 import tailwind from 'tailwindcss';
+import sharp from 'sharp';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -13,6 +14,7 @@ const dist = path.join(root, 'dist');
 if (path.dirname(dist) !== root || path.basename(dist) !== 'dist') throw new Error('Destino inseguro');
 await rm(dist, { recursive: true, force: true });
 await mkdir(path.join(dist, 'assets', 'fonts'), { recursive: true });
+await mkdir(path.join(dist, 'assets', 'slides'), { recursive: true });
 await mkdir(path.join(dist, 'licenses'), { recursive: true });
 const read = async file => (await readFile(path.join(root, file), 'utf8')).replace(/\r\n/g, '\n');
 const config = JSON.parse(await read('site.config.json'));
@@ -89,6 +91,14 @@ for (const file of ['comparativa/comparador.js', 'comparativa/disenos.js']) {
 for (const file of ['logo-brand.png', 'logo-dark.png', 'logo-white.png', 'logo.jpg']) {
   await cp(path.join(root, 'assets', file), path.join(dist, 'assets', file));
 }
+// Responsive, compressed copies only; reference originals stay in the source repo.
+for (const slide of ['admision', 'simulacros', 'materiales']) {
+  for (const width of [640, 1024, 1600]) {
+    const photo = await sharp(path.join(root, 'assets', 'slides', `${slide}-reference.png`))
+      .resize({ width, withoutEnlargement: true }).webp({ quality: 82, effort: 6 }).toBuffer();
+    await asset(`assets/slides/${slide}-${width}.webp`, photo);
+  }
+}
 await mkdir(path.join(dist, 'comparativa', 'capturas'), { recursive: true });
 for (const design of ['original', 'institucional', 'editorial', 'esencial']) {
   await cp(path.join(root, 'comparativa', 'capturas', `${design}.png`), path.join(dist, 'comparativa', 'capturas', `${design}.png`));
@@ -126,11 +136,18 @@ const metadata = `
 
 function rewriteAssets(markup, file) {
   const current = path.posix.dirname(file);
-  return markup.replace(/\b(src|href)="([^"#]+)"/g, (match, attribute, reference) => {
-    if (/^(?:[a-z]+:|\/\/)/i.test(reference)) return match;
+  function rewrite(reference) {
+    if (/^(?:[a-z]+:|\/\/|#)/i.test(reference)) return reference;
     const source = path.posix.normalize(path.posix.join(current, reference.split('?')[0]));
-    if (!mapping[source]) return match;
-    return `${attribute}="${path.posix.relative(current, mapping[source])}"`;
+    return mapping[source] ? path.posix.relative(current, mapping[source]) : reference;
+  }
+  return markup.replace(/\b(src|href|srcset)="([^"]+)"/g, (match, attribute, reference) => {
+    if (attribute !== 'srcset') return `${attribute}="${rewrite(reference)}"`;
+    const candidates = reference.split(',').map(candidate => {
+      const [url, ...descriptor] = candidate.trim().split(/\s+/);
+      return [rewrite(url), ...descriptor].join(' ');
+    });
+    return `srcset="${candidates.join(', ')}"`;
   });
 }
 const pages = ['index.html', 'comparativa/index.html', 'comparativa/institucional.html', 'comparativa/editorial.html', 'comparativa/esencial.html'];

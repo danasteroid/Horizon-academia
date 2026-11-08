@@ -35,6 +35,16 @@ No abrir el HTML fuente directamente ni servir la raíz como versión de producc
 
 Después de editar, ejecutar `npm run verify`. Se revisan sintaxis, enlaces y anclas locales, fuentes, metadatos y presupuesto de carga. Los nombres de CSS/JS compilados incorporan una huella de su contenido para evitar recursos obsoletos en caché.
 
+## Fotografías de los tres slides
+
+Se implementa la opción elegida de fotografía integrada en el fondo, con una imagen distinta para admisión, simulacros y materiales. Los títulos, botones y datos permanecen como HTML. El fondo se oscurece en la zona del texto y se reencuadra al apilarse en celular. El carrusel reserva la altura de su slide más alto para evitar saltos entre imágenes.
+
+Las tres fotos actuales son **referencias generadas**, identificadas en la página como “Fotografía referencial”; no representan alumnos, docentes ni instalaciones reales de la academia. Quedan pendientes los originales del cliente.
+
+Fuentes de imagen: `assets/slides/admision-reference.png`, `simulacros-reference.png` y `materiales-reference.png`. La compilación con Sharp genera WebP de 640, 1024 y 1600 píxeles, conservando el encuadre completo del archivo; el navegador recibe la variante adecuada mediante `srcset`. Los originales PNG no se copian al paquete público. Los nombres de WebP incluyen una huella de contenido.
+
+Cuando lleguen las fotos reales, sustituir los tres originales, revisar el punto de interés en `.slide-photo img` y los encuadres de celular, y retirar las etiquetas “Fotografía referencial” únicamente después de comprobar que todos los recursos corresponden a la academia. Los archivos se pueden renombrar entonces actualizando también la lista del compilador. Ejecutar `npm run verify` antes de publicar.
+
 ## Publicación
 
 El flujo `.github/workflows/pages.yml` instala con `npm ci`, compila, valida y publica **únicamente `dist/`** al actualizar `main`. Las solicitudes de cambio también pasan comprobaciones, pero no publican. El origen de GitHub Pages debe estar en **GitHub Actions**.
