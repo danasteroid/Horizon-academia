@@ -1,8 +1,8 @@
 # Horizon Academia — pendientes para la reunión y el lanzamiento
 
-Última actualización: 3 de noviembre de 2026.
+Última actualización: 8 de noviembre de 2026.
 
-La versión técnica conserva el diseño original. El usuario informa que el contenido está actualizado; se incorporaron la misión y la visión facilitadas por el cliente el 3 de noviembre de 2026. Los puntos siguientes sirven como comprobación de salida y no implican que se haya detectado un dato incorrecto. Esta lista no presupone que la web gestione matrículas o pagos.
+La versión técnica conserva el diseño original. El 8 de noviembre de 2026 el usuario confirmó, tras consultar con el cliente, que los datos y las fechas publicados están actualizados y que se mantiene el número de consultas facilitado por la academia. La misión y la visión ya están integradas. El dominio propio se deja para una etapa final; la web ya está publicada en GitHub Pages. Esta lista no presupone matrícula ni pagos en línea.
 
 ## 1. Base técnica preparada
 
@@ -21,41 +21,48 @@ La versión técnica conserva el diseño original. El usuario informa que el con
 
 Validación local de esta entrega: 46 archivos públicos y 58 referencias locales comprobadas; menú revisado a 320, 390, 768 y 1280 píxeles; consulta y diálogo probados sin enviar mensajes. Quedan pendientes las pruebas de atención y dispositivos físicos indicadas más adelante.
 
-## 2. Contenido que debe aprobar el cliente
+## 2. Contenido confirmado por el cliente
 
 - [x] Incorporar la misión y la visión proporcionadas por el cliente, incluida la visión para 2030.
-- [ ] Nombre comercial y forma exacta de escribir Horizon Academia.
-- [ ] Nombre del instituto y cómo describir la relación con él; no sugerir afiliación oficial si no existe.
-- [ ] Campaña 2027, inicio del lunes 11 de enero de 2027 y disponibilidad real de vacantes.
-- [ ] Nombre y cargo del fundador, Sebastian Pichí Barreto, y mensaje adaptado.
-- [ ] Tres años de experiencia y cuándo actualizar esa cifra.
-- [ ] Sustento del 70% de efectividad: periodo, número de alumnos, cálculo y evidencia. Aprobar su uso o retirarlo si no puede sostenerse.
-- [ ] Nombre del primer ciclo: **“Ciclo base” es una propuesta editorial** porque el documento no lo especificaba.
-- [ ] Nombres y beneficios reales de los ciclos base, intensivo y repaso.
-- [ ] Modalidades presencial y a distancia y funcionamiento de las clases remotas.
-- [ ] Horarios por ciclo y modalidad, días, duración, fechas de inicio y cierre.
-- [ ] Materiales incluidos, acceso a plataforma, grabaciones si existen y soporte.
-- [ ] Confirmar que 50 preguntas en 90 minutos describe los **simulacros de Horizon**; no presentarlo como formato oficial no verificado.
-- [ ] Temario, materias, estructura y fechas oficiales de admisión, con fuente vigente si se publican.
-- [ ] Precios, promociones, vigencias, pagos y condiciones; decidir qué será público y qué se consultará por WhatsApp.
-- [ ] Preguntas frecuentes y botones: distinguir pedir información de completar una matrícula.
-- [ ] Revisión final de textos, ortografía, nombres, cifras y fechas.
+- [x] Nombre comercial y forma exacta de escribir Horizon Academia.
+- [x] Nombre del instituto y cómo describir la relación con él; no sugerir afiliación oficial si no existe.
+- [x] Campaña 2027, inicio del lunes 11 de enero de 2027 y disponibilidad real de vacantes.
+- [x] Nombre y cargo del fundador, Sebastian Pichí Barreto, y mensaje adaptado.
+- [x] Tres años de experiencia y cuándo actualizar esa cifra.
+- [x] Cifra del 70% de efectividad: confirmación del dato publicado recibida del cliente; el respaldo de la cifra corresponde a la academia.
+- [x] Nombre del primer ciclo: “Ciclo base”, incluido en la confirmación del contenido actual.
+- [x] Nombres y beneficios reales de los ciclos base, intensivo y repaso.
+- [x] Modalidades presencial y a distancia y funcionamiento de las clases remotas.
+- [x] Horarios por ciclo y modalidad, días, duración, fechas de inicio y cierre.
+- [x] Materiales incluidos, acceso a plataforma, grabaciones si existen y soporte.
+- [x] Formato publicado de los **simulacros de Horizon**: 50 preguntas en 90 minutos.
+- [x] Información actualmente publicada sobre conocimientos, entrevista y fechas; cualquier ampliación futura del proceso oficial requerirá su fuente vigente.
+- [x] Precios, promociones, vigencias, pagos y condiciones; decidir qué será público y qué se consultará por WhatsApp.
+- [x] Preguntas frecuentes y botones: distinguir pedir información de completar una matrícula.
+- [x] Revisión final de textos, ortografía, nombres, cifras y fechas.
 
 ## 3. Contactos y materiales reales
 
-- [ ] Confirmar WhatsApp +51 989 949 451, responsable de atenderlo y si será WhatsApp Business de la academia.
-- [ ] Confirmar atención de lunes a viernes, 9:00 a. m. a 9:00 p. m., y plazo para responder.
-- [ ] Aprobar correo actual o proporcionar correo institucional; definir quién lo revisa.
-- [ ] Precisar dirección: Colegio Juan Kepler, Nicrupampa, Av. Manco Cápac, Huaraz; número, referencia, entrada y pin verificado del mapa.
+- [x] WhatsApp +51 989 949 451 confirmado como el número facilitado por la academia para consultas.
+- [ ] Precisar quién lo atiende y si será una cuenta de WhatsApp Business de la academia.
+- [x] Horario publicado de atención confirmado dentro de la revisión de datos: lunes a viernes, 9:00 a. m. a 9:00 p. m.
+- [ ] Definir el plazo esperado para responder consultas.
+- [x] Correo actual incluido en la confirmación de los datos publicados.
+- [ ] Si se desea correo institucional con dominio propio, definirlo en la etapa del dominio y asignar responsable de la bandeja.
+- [x] Dirección publicada confirmada: Colegio Juan Kepler, Nicrupampa, Av. Manco Cápac, Huaraz.
+- [ ] Para Google Maps, disponer del pin exacto y de cualquier número o referencia adicional de acceso.
 - [ ] Confirmar perfiles y titularidad de Facebook, Instagram y TikTok; usar enlaces oficiales estables.
 - [ ] Entregar URL y funcionamiento del aula virtual. El botón actual informa y deriva al equipo.
 - [ ] Entregar logo original, preferiblemente vectorial; aprobar icono y logo usado al compartir el enlace.
-- [ ] Fotografías reales de sede, clases y equipo, con autorización de publicación.
+- [ ] Recibir las tres imágenes que proporcionará el cliente para los slides de admisión, simulacros y materiales/entrevista.
+- [ ] Elegir su ubicación visual, comprobar recortes en computadora y celular e integrarlas.
+- [ ] Si se amplía la galería: fotografías reales de sede, clases y equipo, con autorización de publicación.
 - [ ] Si habrá testimonios o ingresantes: textos auténticos, resultados verificables y permisos para nombres, fotos y datos; atender especialmente los de menores.
 - [ ] Si habrá descargas: materiales finales, derechos de uso y revisión para evitar datos personales.
 
-## 4. Dominio, alojamiento y cuentas
+## 4. Dominio, alojamiento y cuentas — dominio diferido para el final
 
+- [x] Acordar el orden de trabajo: terminar las imágenes y detalles; mantener el enlace en la nube actual y dejar la compra del dominio para una etapa final.
 - [ ] Elegir dominio oficial y comprobar disponibilidad al contratar. No se ha comprado ni reservado ninguno.
 - [ ] Registrar en una cuenta controlada por el cliente; definir titular, pago y renovaciones.
 - [ ] Elegir alojamiento definitivo y responsable. GitHub Pages es el actual; revisar sus condiciones para el uso comercial previsto, especialmente si se añaden transacciones.
@@ -67,10 +74,12 @@ Validación local de esta entrega: 46 archivos públicos y 58 referencias locale
 
 ## 5. Atención, privacidad y condiciones
 
+- [x] Registrar que, según el cliente, la academia proporciona sus condiciones y la información de privacidad al solicitar información. No se ha recibido ese texto para publicarlo en la web.
+
 - [ ] Definir proceso real: consulta → respuesta → elección de ciclo → pago → confirmación; asignar responsables.
 - [ ] Confirmar datos necesarios. El formulario actual solo arma el mensaje localmente; WhatsApp recibe la consulta cuando la persona decide continuar y enviarla.
 - [ ] Proporcionar identidad y contacto del responsable de los datos y las condiciones de la actividad.
-- [ ] Preparar y revisar aviso de privacidad y, cuando corresponda, condiciones de servicio, matrícula, cambios, cancelaciones y devoluciones; aprobar antes de activar recogida o gestión adicional de datos.
+- [ ] Si se decide publicar esos documentos en la web, solicitar sus versiones oficiales al cliente y comprobar que describen el funcionamiento real. No redactar condiciones nuevas ni considerar revisada su suficiencia legal con esta confirmación.
 - [ ] Revisar obligaciones aplicables al negocio, incluida atención de reclamos cuando corresponda, con quien asesore al cliente. No se han inventado textos legales ni datos de una entidad.
 - [ ] Si se añaden analítica, publicidad, mapas incrustados, chat o formularios externos: decidir finalidad y proveedor, evaluar datos/cookies y adaptar información y consentimiento cuando corresponda. Actualmente no se añadieron rastreadores.
 - [ ] Si se piden matrículas, pagos o cuentas en la web: definir una fase adicional con servidor, seguridad, permisos, confirmaciones y pruebas del proceso real. No está implementada ni es requisito de una web informativa.
@@ -82,7 +91,8 @@ Validación local de esta entrega: 46 archivos públicos y 58 referencias locale
 - [ ] Crear o actualizar perfil de empresa en Google si corresponde y el cliente tiene acceso; verificar sede, horario y teléfono.
 - [ ] Probar enlace compartido en WhatsApp y redes; confirmar logo y descripción. Las plataformas pueden conservar vistas previas anteriores.
 - [ ] Probar contacto real desde un Android, un iPhone y una computadora; confirmar recepción y respuesta del equipo. Las pruebas técnicas no envían mensajes.
-- [ ] Revisar menú, legibilidad, formulario y redes en dispositivos reales y con conexiones normales y lentas.
+- [x] Buena presentación en celular confirmada por el usuario.
+- [ ] Completar la prueba real de contacto y revisar los recortes de las futuras imágenes en los dispositivos disponibles.
 - [ ] Aprobar por escrito contenidos, condiciones, contactos y dominio definitivos.
 - [ ] Acordar fecha de salida y actualizar biografías, impresos, QR y enlaces con la dirección final.
 
@@ -96,11 +106,11 @@ Validación local de esta entrega: 46 archivos públicos y 58 referencias locale
 - [ ] Registrar renovaciones de dominio, alojamiento y correo, con presupuesto y responsable.
 - [ ] Entregar guía de acceso y mantenimiento sin contraseñas incrustadas.
 
-## Decisiones mínimas para obtener en la reunión
+## Siguientes pasos acordados
 
-1. Qué contenido, cifras y fechas aprueba el cliente y cuáles cambian.
-2. Qué dominio quiere, quién lo contrata y quién será el titular.
-3. Qué WhatsApp, correo y sede se publican y quién atiende.
-4. Si seguirá informando y derivando a WhatsApp o necesita matrícula/pagos en otra fase.
-5. Qué fotos, permisos, condiciones y acceso al aula entregará, con fecha y responsable.
-6. Quién aprueba el lanzamiento y quién mantendrá la web.
+1. Elegir la composición de las imágenes de los tres slides y recibir los archivos del cliente.
+2. Integrar y optimizar esas imágenes, revisar computadora/celular y publicar la actualización en el enlace actual de GitHub Pages.
+3. Explicar y, cuando haya acceso de la academia, configurar su presencia en Google: Search Console para la web y Perfil de Empresa para Maps.
+4. Probar una consulta real al número ya confirmado y acordar el responsable de respuesta.
+5. Elegir y conectar el dominio propio al final, cuando el cliente decida el nombre y la contratación.
+6. Definir mantenimiento, responsables y fecha de difusión del enlace oficial.
